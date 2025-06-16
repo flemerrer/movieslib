@@ -5,6 +5,7 @@ import fr.eni.movieslib.bll_services.mock.Mock;
 import fr.eni.movieslib.bo.movies.Movie;
 import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.GetMapping;
 
 import java.util.ArrayList;
 
@@ -17,11 +18,20 @@ public class MovieController {
         this.service = service;
     }
 
-    public ArrayList<Movie> getallMovies() {
-        return (ArrayList<Movie>) service.getAllMovies();
+    @GetMapping({"/", "app"})
+    public String getAppIndex(){
+        return "index";
     }
 
-    public Movie getMovieById(long id) {
-        return service.getMovieById(id);
+    @GetMapping("/movies")
+    public String getallMovies() {
+        ArrayList<Movie> allMovies = (ArrayList<Movie>) service.getAllMovies();
+        return "movies";
+    }
+
+    @GetMapping("/movie/{id]}")
+    public String getMovieById(long id) {
+        Movie movie = service.getMovieById(id);
+        return "detail";
     }
 }
