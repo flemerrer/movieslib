@@ -10,7 +10,9 @@ import org.springframework.context.ApplicationContext;
 public class Application {
 
     public static void main(String[] args) {
-        SpringApplication.run(Application.class, args);
+        ApplicationContext context = SpringApplication.run(Application.class, args);
+        MovieController controller = context.getBean(MovieController.class);
+        controller.service.mockDALandDB();
     }
 
 }

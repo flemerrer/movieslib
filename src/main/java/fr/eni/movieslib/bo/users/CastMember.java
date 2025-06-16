@@ -24,9 +24,6 @@ public class CastMember extends User{
 
     @Override
     public String toString() {
-        return "Cast{" +
-                "role=" + role +
-                ", movies=" + movies +
-                '}';
+        return super.toString();
     }
 }

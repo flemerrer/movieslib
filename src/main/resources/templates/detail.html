@@ -1,10 +1,23 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="fr" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
 </head>
 <body>
-
+<h1>Filmothèque</h1>
+<a href="/">retour au menu</a>
+<br/>
+<h2 th:text="${movie.title}"></h2>
+<p>Genre : <span th:text="${movie.genre}"></span></p>
+<p>Année : <span th:text="${movie.releaseDate}"></span></p>
+<p>Titre : <span th:text="${movie.title}"></span></p>
+<p>Réalisateur : <span th:text="${movie.director}"></span></p>
+<p>Durée (min) : <span th:text="${movie.duration}"></span></p>
+<p>Acteurs : </p>
+<ul>
+    <li th:each="actor : ${movie.actors}" th:text="${actor}"></li>
+</ul>
+<p>Synopsis : <span th:text="${movie.synopsis}"></span></p>
 </body>
 </html>

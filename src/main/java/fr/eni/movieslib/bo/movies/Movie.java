@@ -1,7 +1,6 @@
 package fr.eni.movieslib.bo.movies;
 
 import java.util.ArrayList;
-import java.util.Calendar;
 
 import fr.eni.movieslib.bo.users.CastMember;
 import lombok.Getter;
@@ -14,7 +13,7 @@ import lombok.Setter;
 public class Movie {
     long id;
     String title;
-    int year;
+    int releaseDate;
     int duration;
     String synopsis;
     Genre genre;
@@ -24,7 +23,7 @@ public class Movie {
 
     public Movie(String title, int year, int duration, String synopsis) {
         this.title = title;
-        this.year = year;
+        this.releaseDate = year;
         this.duration = duration;
         this.synopsis = synopsis;
     }
@@ -32,7 +31,7 @@ public class Movie {
     public Movie(long id, String title, int year, int duration, String synopsis) {
         this.id = id;
         this.title = title;
-        this.year = year;
+        this.releaseDate = year;
         this.duration = duration;
         this.synopsis = synopsis;
     }
@@ -42,7 +41,7 @@ public class Movie {
         return "Movie{" +
                 "id=" + id +
                 ", title='" + title + '\'' +
-                ", year=" + year +
+                ", year=" + releaseDate +
                 ", duration=" + duration +
                 ", synopsis='" + synopsis + '\'' +
                 ", genre=" + genre +
