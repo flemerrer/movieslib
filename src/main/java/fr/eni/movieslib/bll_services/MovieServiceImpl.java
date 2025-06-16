@@ -17,7 +17,7 @@ public class MovieServiceImpl implements MovieService {
 
     @Override
     public List<Movie> getAllMovies() {
-        return List.of();
+        return null;
     }
 
     @Override
@@ -27,12 +27,12 @@ public class MovieServiceImpl implements MovieService {
 
     @Override
     public List<Genre> getGenresList() {
-        return List.of();
+        return null;
     }
 
     @Override
     public List<CastMember> getCastMembers() {
-        return List.of();
+        return null;
     }
 
     @Override
@@ -47,6 +47,11 @@ public class MovieServiceImpl implements MovieService {
 
     @Override
     public void addMovie(Movie movie) {
+
+    }
+
+    @Override
+    public void removeMovie(Movie movie) {
 
     }
 }

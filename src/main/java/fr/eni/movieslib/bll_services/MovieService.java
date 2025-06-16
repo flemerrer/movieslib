@@ -20,4 +20,6 @@ public interface MovieService {
     CastMember GetCastMemberById(long id);
 
     void addMovie(Movie movie);
+
+    void removeMovie(Movie movie);
 }

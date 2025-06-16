@@ -8,6 +8,7 @@ import lombok.Setter;
 @Setter
 @NoArgsConstructor
 public abstract class User {
+    static long idCounter;
     long id;
     String surname;
     String lastName;
@@ -15,12 +16,15 @@ public abstract class User {
     public User(String surname, String name) {
         this.surname = name;
         this.lastName = surname;
+        idCounter++;
+        this.id = idCounter;
     }
 
     public User(long id, String surname, String name) {
         this.id = id;
         this.surname = name;
         this.lastName = surname;
+        idCounter++;
     }
 
     @Override

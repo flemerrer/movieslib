@@ -75,6 +75,12 @@ public class Mock implements MovieService {
         moviesList.add(movie);
     }
 
+    @Override
+    public void removeMovie(Movie movie) {
+        // Sauvegarde du film;
+        moviesList.remove(movie);
+    }
+
     /**
      * Cette méthode permet de simuler le stockage en base de données et la remontée
      * d'information
