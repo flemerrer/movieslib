@@ -27,8 +27,8 @@ public class MovieController {
         return "movies";
     }
 
-    @GetMapping("/movie")
-    public String getMovieById(Model model, @RequestParam long id) {
+    @GetMapping("/movie/{id}")
+    public String getMovieById(Model model, @PathVariable long id) {
         Movie selectedMovie = service.getMovieById(id);
         model.addAttribute("movie", selectedMovie);
         return "detail";

@@ -22,7 +22,7 @@
             <td th:text="${movie.releaseDate}"></td>
             <td th:text="${movie.title}"></td>
             <td th:text="${movie.director}"></td>
-            <td><a th:href="@{/movie(id=${movie.id})}">
+            <td><a th:href="@{/movie/{id}(id=${movie.id})}">
                 <button>Détail</button>
             </a></td>
         </tr>
