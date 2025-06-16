@@ -1,0 +1,13 @@
+<div th:fragment="movieForm">
+    <h2 th:text="${movie.title}"></h2>
+    <p>Année : <span th:text="${movie.releaseDate}"></span></p>
+    <p>Titre : <span th:text="${movie.title}"></span></p>
+    <p>Réalisateur : <span th:text="${movie.director}"></span></p>
+    <p>Durée (min) : <span th:text="${movie.duration}"></span></p>
+    <p>Acteurs : </p>
+    <ul>
+        <li th:each="actor : ${movie.actors}" th:text="${actor}"></li>
+    </ul>
+    <p>Synopsis : <span th:text="${movie.synopsis}"></span></p>
+    <button>Modifier informations</button>
+</div>

@@ -9,22 +9,22 @@ import lombok.Setter;
 @NoArgsConstructor
 public abstract class User {
     long id;
-    String name;
     String surname;
+    String lastName;
 
-    public User(String name, String surname) {
-        this.name = name;
-        this.surname = surname;
+    public User(String surname, String name) {
+        this.surname = name;
+        this.lastName = surname;
     }
 
-    public User(long id, String name, String surname) {
+    public User(long id, String surname, String name) {
         this.id = id;
-        this.name = name;
-        this.surname = surname;
+        this.surname = name;
+        this.lastName = surname;
     }
 
     @Override
     public String toString() {
-        return name + '\'' + surname;
+        return surname + " " + lastName;
     }
 }

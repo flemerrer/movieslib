@@ -1,0 +1,24 @@
+<div th:fragment="movieForm">
+    <h2 th:text="${movie.title}"></h2>
+    <form action="/" method="post">
+        <ul class="flex-outer">
+            <li><label for="genre">Genre : </label><input type="text" id="genre" th:placeholder="${movie.genre}"></li>
+            <li><label for="releaseDate">Année : </label><input type="text" id="releaseDate"
+                                                                th:placeholder="${movie.releaseDate}"></li>
+            <li><label for="title">Titre : </label><input type="text" id="title" th:placeholder="${movie.title}"></li>
+            <li><label for="director">Réalisateur : </label><input type="text" id="director"
+                                                                   th:placeholder="${movie.director}"></li>
+            <li><label for="duration">Durée (min) : </label><input type="text" id="duration"
+                                                                   th:placeholder="${movie.duration}"></li>
+            <li><label for="actors">Acteurs : </label><textarea id="actors" th:inline="text">
+[# th:each="actor: *{movie.actors}"]- [[${actor}]]
+[/]
+            </textarea></li>
+            <li><label for="synopsis">Synopsis : </label><textarea id="synopsis"
+                                                                   th:placeholder="${movie.synopsis}"></textarea></li>
+            <li>
+                <button type="submit">Modifier informations</button>
+            </li>
+        </ul>
+    </form>
+</div>

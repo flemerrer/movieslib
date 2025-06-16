@@ -34,8 +34,8 @@ public class RegisteredUser extends User {
                 "isAdmin=" + isAdmin +
                 ", reviews=" + reviews +
                 ", id=" + id +
-                ", name='" + name + '\'' +
-                ", surname='" + surname + '\'' +
+                ", name='" + surname + '\'' +
+                ", surname='" + lastName + '\'' +
                 ", pseudo='" + pseudo + '\'' +
                 '}';
     }

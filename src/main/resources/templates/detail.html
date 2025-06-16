@@ -3,21 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
+    <link href="/global.css" rel="stylesheet" />
 </head>
 <body>
-<h1>Filmothèque</h1>
-<a href="/">retour au menu</a>
-<br/>
-<h2 th:text="${movie.title}"></h2>
-<p>Genre : <span th:text="${movie.genre}"></span></p>
-<p>Année : <span th:text="${movie.releaseDate}"></span></p>
-<p>Titre : <span th:text="${movie.title}"></span></p>
-<p>Réalisateur : <span th:text="${movie.director}"></span></p>
-<p>Durée (min) : <span th:text="${movie.duration}"></span></p>
-<p>Acteurs : </p>
-<ul>
-    <li th:each="actor : ${movie.actors}" th:text="${actor}"></li>
-</ul>
-<p>Synopsis : <span th:text="${movie.synopsis}"></span></p>
+<div th:replace="fragments/header :: header">...</div>
+<div class="content detail">
+    <div th:replace="fragments/form2 :: movieForm">...</div>
+</div>
+<div th:replace="fragments/footer :: footer">...</div>
 </body>
 </html>
