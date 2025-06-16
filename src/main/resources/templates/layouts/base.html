@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html lang="fr" xmlns:th="http://www.thymeleaf.org"
+      data-th-fragment="baseLayout(pageTitle, content, additionalCss)">
+<head>
+    <meta charset="UTF-8">
+    <title data-th-replace="${pageTitle}">Title</title>
+    <link data-th-href="@{/global.css}" rel="stylesheet"/>
+    <th:block data-th-replace="${additionalCss} ?: ~{}"></th:block>
+</head>
+<body>
+<div th:replace="fragments/header :: header">...</div>
+<main th:replace="${content} ?: ~{}">Content</main>
+<div th:replace="fragments/footer :: footer">...</div>
+</body>
+</html>

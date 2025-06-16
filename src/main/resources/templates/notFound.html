@@ -1,16 +1,15 @@
 <!DOCTYPE html>
-<html lang="fr" xmlns:th="http://www.thymeleaf.org">
+<html lang="fr" xmlns:th="http://www.thymeleaf.org"
+      data-th-replace="~{layouts/base :: baseLayout(
+      pageTitle=~{:: title}, content=~{:: .content}}, additionalCss=~{})}">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
-    <link href="/global.css" rel="stylesheet"/>
+    <Title>Film inexistant</Title>
 </head>
 <body>
-<div th:replace="fragments/header :: header">...</div>
 <div class="content">
     <h2>Le film demandé n'existe pas</h2>
     <a href="/">retourner au menu principal</a>
 </div>
-<div th:replace="fragments/footer :: footer">...</div>
 </body>
 </html>

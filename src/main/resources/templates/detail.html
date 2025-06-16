@@ -1,15 +1,11 @@
 <!DOCTYPE html>
-<html lang="fr" xmlns:th="http://www.thymeleaf.org">
+<html lang="fr" xmlns:th="http://www.thymeleaf.org"
+      data-th-replace="~{layouts/base :: baseLayout(
+      pageTitle=~{:: title}, content=~{fragments/form :: movieForm}, additionalCss=title=~{})}">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
-    <link href="/global.css" rel="stylesheet"/>
+    <Title>${movie.title}</Title>
 </head>
 <body>
-<div th:replace="fragments/header :: header">...</div>
-<div class="content detail">
-    <div th:replace="fragments/form :: movieForm">...</div>
-</div>
-<div th:replace="fragments/footer :: footer">...</div>
 </body>
 </html>
