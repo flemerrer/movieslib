@@ -1,3 +1,5 @@
 To improve :
-- ToString
-- ...
+- ToString definition
+- visuals
+- add POST methods to update DTO
+- etc.
