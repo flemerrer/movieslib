@@ -4,7 +4,7 @@
       pageTitle=~{:: title}, content=~{fragments/form :: movieForm}, additionalCss=title=~{})}"-->
 <head th:replace="~{layouts/base :: baseLayout(~{::title},~{fragments/form :: movieForm},~{})}">
     <meta charset="UTF-8">
-    <Title>${movie.title}</Title>
+    <Title th:text="${movie.title}"></Title>
     <link data-th-href="@{/global.css}" rel="stylesheet"/>
 </head>
 <body>

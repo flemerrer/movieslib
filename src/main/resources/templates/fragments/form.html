@@ -11,8 +11,13 @@
             <li><label for="duration">Durée (min) : </label><input type="text" id="duration"
                                                                    th:field="*{duration}"></li>
 <!--            TODO: replace textarea by dropdown select-->
-            <li><label for="actors">Acteurs : </label><textarea id="actors" th:inline="text">[# th:each="actor: *{actors}"]- [[${actor}]]
-[/]</textarea></li>
+<!--            <li><label for="actors">Acteurs : </label><textarea id="actors" th:inline="text">[# th:each="actor: *{actors}"]- [[${actor}]]-->
+<!--[/]</textarea></li>-->
+            <li><label for="actors">Acteurs : </label>
+                <select id="actors" multiple>
+                    <option th:each="actor: ${movie.actors}" th:text="${actor}"></option>
+                </select>
+            </li>
             <li><label for="synopsis">Synopsis : </label><textarea id="synopsis"
                                                                    th:field="*{synopsis}"></textarea></li>
             <li>

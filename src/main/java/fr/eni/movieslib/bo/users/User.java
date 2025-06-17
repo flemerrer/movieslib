@@ -39,7 +39,7 @@ public abstract class User implements Serializable {
         if (lastName.isEmpty()) {
             return firstName;
         }
-        return firstName + " " + lastName;
+        return firstName + " " + lastName.toUpperCase();
     }
 
 }

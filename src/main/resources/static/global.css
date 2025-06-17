@@ -124,7 +124,7 @@ a {
     justify-content: flex-end;
 }
 
-input, textarea {
+input, textarea, select {
     font-size: inherit;
     width: 50%;
     height: fit-content;
