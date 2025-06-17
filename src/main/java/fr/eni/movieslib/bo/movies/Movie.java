@@ -5,6 +5,10 @@ import java.io.Serializable;
 import java.util.ArrayList;
 
 import fr.eni.movieslib.bo.users.CastMember;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotEmpty;
+import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Size;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -18,12 +22,15 @@ public class Movie implements Serializable {
     private static final long serialVersionUID = 1L;
 
     long id;
+
+    @Size(min = 2, max = 250, message="Le nom doit avoir au moins 2 caractères")
     String title;
+
     int releaseDate;
     int duration;
-    String synopsis;
-    Genre genre;
     CastMember director;
+    Genre genre;
+    String synopsis;
     ArrayList<CastMember> actors = new ArrayList<>();
     ArrayList<Review> reviews = new ArrayList<>();
 

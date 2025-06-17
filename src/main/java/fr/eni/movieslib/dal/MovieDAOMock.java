@@ -9,6 +9,7 @@ import lombok.Getter;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Stream;
 
 public class MovieDAOMock implements MovieDAO {
 
@@ -39,23 +40,27 @@ public class MovieDAOMock implements MovieDAO {
     @Override
     public void updateMovie(Movie movie) {
         Movie toUpdate = get(movie.getId());
-        if (movie.getDuration() != 0) {
+        if (movie.getDuration() > 0) {
             toUpdate.setDuration(movie.getDuration());
         }
-        if (movie.getDirector() != null) {
+        if (!movie.getDirector().toString().isEmpty()) {
             toUpdate.setDirector(movie.getDirector());
         }
-        if (movie.getSynopsis() != null) {
+        if (!movie.getSynopsis().isEmpty()) {
             toUpdate.setSynopsis(movie.getSynopsis());
         }
-        if (movie.getTitle() != null) {
+        if (!movie.getTitle().isEmpty()) {
             toUpdate.setTitle(movie.getTitle());
         }
-        if (movie.getGenre() != null) {
+        if (!movie.getGenre().toString().isEmpty()) {
             toUpdate.setGenre(movie.getGenre());
         }
-        if (movie.getReleaseDate() != 0) {
-            toUpdate.setReleaseDate(movie.getReleaseDate());
+        if (movie.getReleaseDate() > 0) {
+//            StringBuilder s = new StringBuilder();
+//            s.append(movie.getReleaseDate());
+//            if(!s.isEmpty()) {
+                toUpdate.setReleaseDate(movie.getReleaseDate());
+//            }
         }
     }
 

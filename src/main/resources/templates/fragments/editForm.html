@@ -3,14 +3,13 @@
     <form th:object="${movie}" th:action="@{/movie/{id}(id=${movie.id})}" method="post">
         <ul class="flex-outer">
             <li><label for="genre">Genre : </label><input type="text" id="genre" th:field="*{genre}"></li>
-            <li><label for="releaseDate">Année : </label><input type="text" id="releaseDate"
-                                                                th:field="*{releaseDate}"></li>
-            <li><label for="title">Titre : </label><input type="text" id="title" th:field="*{title}"></li>
+            <li><label for="releaseDate">Année : </label><input type="number" id="releaseDate"
+                                                                th:field="*{releaseDate}" required></li>
+            <li><label for="title">Titre : </label><input type="text" id="title" th:field="*{title}" required></li>
             <li><label for="director">Réalisateur : </label><input type="text" id="director"
-                                                                   th:field="*{director}"></li>
-            <li><label for="duration">Durée (min) : </label><input type="text" id="duration"
-                                                                   th:field="*{duration}"></li>
-<!--            TODO: replace textarea by dropdown select-->
+                                                                   th:field="*{director}" required></li>
+            <li><label for="duration">Durée (min) : </label><input type="number" id="duration"
+                                                                   th:field="*{duration}" required></li>
 <!--            <li><label for="actors">Acteurs : </label><textarea id="actors" th:inline="text">[# th:each="actor: *{actors}"]- [[${actor}]]-->
 <!--[/]</textarea></li>-->
             <li><label for="actors">Acteurs : </label>

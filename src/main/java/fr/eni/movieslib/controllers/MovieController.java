@@ -2,10 +2,11 @@ package fr.eni.movieslib.controllers;
 
 import fr.eni.movieslib.bll_services.mock.MovieServiceMock;
 import fr.eni.movieslib.bo.movies.Movie;
+import jakarta.validation.Valid;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.bind.support.SessionStatus;
 
 import java.util.ArrayList;
 
@@ -50,6 +51,21 @@ public class MovieController {
         } catch (Exception e) {
         }
         return "detail";
+    }
+
+    @GetMapping("/movie/add")
+    public String addMovie(Model model) {
+        model.addAttribute("movie", new Movie());
+        return "addMovie";
+    }
+
+    @PostMapping("/movie/add")
+    public String createMovie(@Valid @ModelAttribute("movie") Movie movie, BindingResult bindingResult) {
+        if (bindingResult.hasErrors()) {
+            return "addMovie";
+        }
+        service.addMovie(movie);
+        return "redirect:/movies";
     }
 
     @PostMapping("/movie/{id}")

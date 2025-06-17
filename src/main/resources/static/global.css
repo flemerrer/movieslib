@@ -45,7 +45,8 @@ body {
     padding: 15px;
     width: 100%;
     text-align: center;
-    background-color: whitesmoke;
+    color: whitesmoke;
+    background-color: #244858;
 }
 
 table {
