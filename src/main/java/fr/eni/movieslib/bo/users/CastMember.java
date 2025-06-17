@@ -20,12 +20,12 @@ public class CastMember extends User implements Serializable {
     Roles role;
     ArrayList<Movie> movies = new ArrayList<>();
 
-    public CastMember(String name, String surname) {
-        super(name, surname);
+    public CastMember(String name, String firstName) {
+        super(name, firstName);
     }
 
-    public CastMember(long id, String name, String surname) {
-        super(id, name, surname);
+    public CastMember(long id, String name, String firstName) {
+        super(id, name, firstName);
     }
 
     @Override

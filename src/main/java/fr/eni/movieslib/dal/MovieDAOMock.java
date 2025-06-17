@@ -76,6 +76,10 @@ public class MovieDAOMock implements MovieDAO {
         moviesList.remove(get(id));
     }
 
+    public void addCastMember(CastMember castMember) {
+        castMembers.add(castMember);
+    }
+
 
     public MovieDAOMock() {
         // Création de la liste des genres

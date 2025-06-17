@@ -17,26 +17,26 @@ public abstract class User implements Serializable {
 
     static long idCounter;
     long id;
-    String surname;
+    String firstName;
     String lastName;
 
-    public User(String surname, String name) {
-        this.surname = name;
-        this.lastName = surname;
+    public User(String firstName, String name) {
+        this.firstName = name;
+        this.lastName = firstName;
         idCounter++;
         this.id = idCounter;
     }
 
-    public User(long id, String surname, String name) {
+    public User(long id, String firstName, String name) {
         this.id = id;
-        this.surname = name;
-        this.lastName = surname;
+        this.firstName = name;
+        this.lastName = firstName;
         idCounter++;
     }
 
     @Override
     public String toString() {
-        return surname + " " + lastName;
+        return firstName + " " + lastName;
     }
 
 }

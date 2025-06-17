@@ -22,14 +22,14 @@ public class RegisteredUser extends User implements Serializable {
     boolean isAdmin = false;
     ArrayList<Review> reviews = new ArrayList<>();
 
-    public RegisteredUser(long id, String name, String surname, String pseudo, String password) {
-        super(id, name, surname);
+    public RegisteredUser(long id, String name, String firstName, String pseudo, String password) {
+        super(id, name, firstName);
         this.pseudo = pseudo;
         this.password = password;
     }
 
-    public RegisteredUser(String name, String surname, String pseudo, String password) {
-        super(name, surname);
+    public RegisteredUser(String name, String firstName, String pseudo, String password) {
+        super(name, firstName);
         this.pseudo = pseudo;
         this.password = password;
     }
@@ -40,8 +40,8 @@ public class RegisteredUser extends User implements Serializable {
                 "isAdmin=" + isAdmin +
                 ", reviews=" + reviews +
                 ", id=" + id +
-                ", name='" + surname + '\'' +
-                ", surname='" + lastName + '\'' +
+                ", name='" + firstName + '\'' +
+                ", firstName='" + lastName + '\'' +
                 ", pseudo='" + pseudo + '\'' +
                 '}';
     }
