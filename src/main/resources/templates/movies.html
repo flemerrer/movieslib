@@ -1,32 +1,12 @@
 <!DOCTYPE html>
-<html lang="fr" xmlns:th="http://www.thymeleaf.org"
-      data-th-replace="~{layouts/base :: baseLayout(
-      pageTitle=~{:: title}, content=~{:: .content}}, additionalCss=~{})}">
-<head>
+<html lang="fr" xmlns:th="http://www.thymeleaf.org">
+<!--      data-th-replace="~{layouts/base :: baseLayout(
+      pageTitle=~{:: title}, content=~{:: .content}}, additionalCss=~{})}"-->
+<head th:replace="layouts/base :: baseLayout(~{::title},~{fragments/moviesList :: moviesList},~{})">
     <meta charset="UTF-8">
     <Title>Filmothèque</Title>
+    <link data-th-href="@{/global.css}" rel="stylesheet"/>
 </head>
 <body>
-<div class="content">
-    <h2>Nos films</h2>
-    <table>
-        <tr>
-            <th scope="col">Genre</th>
-            <th scope="col">Année</th>
-            <th scope="col">Titre</th>
-            <th scope="col">Réalisateur</th>
-            <th scope="col">Action</th>
-        </tr>
-        <tr th:each="movie: ${movies}">
-            <td th:text="${movie.genre}"></td>
-            <td th:text="${movie.releaseDate}"></td>
-            <td th:text="${movie.title}"></td>
-            <td th:text="${movie.director}"></td>
-            <td><a th:href="@{/movie/{id}(id=${movie.id})}">
-                <button>Détail</button>
-            </a></td>
-        </tr>
-    </table>
-</div>
 </body>
 </html>

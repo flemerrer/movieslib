@@ -15,7 +15,7 @@ import org.springframework.stereotype.Service;
 
 @Service
 @Profile("dev")
-public class Mock implements MovieService {
+public class MockServiceImpl implements MovieService {
     // Attributs statiques pour gérer les valeurs à afficher et simuler les données
     // en base
     private static List<Movie> moviesList = new ArrayList<>();
@@ -27,7 +27,7 @@ public class Mock implements MovieService {
     private static final String[] genres = { "Animation", "Science-fiction", "Documentaire", "Action", "Comédie",
             "Drame" };
 
-    public Mock() {
+    public MockServiceImpl() {
     }
 
     @Override

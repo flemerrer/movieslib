@@ -1,10 +1,11 @@
 <!DOCTYPE html>
-<html lang="fr" xmlns:th="http://www.thymeleaf.org"
-      data-th-replace="~{layouts/base :: baseLayout(
-      pageTitle=~{:: title}, content=~{:: .content}}, additionalCss=~{})}">
-<head>
+<html lang="fr" xmlns:th="http://www.thymeleaf.org">
+<!--      data-th-replace="~{layouts/base :: baseLayout(
+      pageTitle=~{:: title}, content=~{:: .content}}, additionalCss=~{})}"-->
+<head th:replace="layouts/base :: baseLayout(~{::title},~{:: .content},~{})">
     <meta charset="UTF-8">
     <Title>Film inexistant</Title>
+    <link data-th-href="@{/global.css}" rel="stylesheet"/>
 </head>
 <body>
 <div class="content">
