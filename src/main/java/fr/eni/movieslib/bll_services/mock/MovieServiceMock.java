@@ -2,7 +2,6 @@ package fr.eni.movieslib.bll_services.mock;
 
 import java.util.List;
 
-
 import fr.eni.movieslib.bll_services.MovieService;
 import fr.eni.movieslib.bo.movies.Movie;
 import fr.eni.movieslib.bo.movies.Genre;
@@ -33,12 +32,12 @@ public class MovieServiceMock implements MovieService {
 
     @Override
     public String[] getGenresList() {
-        return movieDAOMock.getGenres();
+        return MovieDAOMock.getGenres();
     }
 
     @Override
     public List<CastMember> getCastMembers() {
-        return movieDAOMock.getCastMembers();
+        return MovieDAOMock.getCastMembers();
     }
 
     @Override
@@ -57,12 +56,12 @@ public class MovieServiceMock implements MovieService {
     }
 
     @Override
-    public void removeMovie(Movie movie) {
-        movieDAOMock.removeMovie(movie);
+    public void removeMovie(long id) {
+        movieDAOMock.removeMovie(id);
     }
 
-    public void init(){
-        movieDAOMock.mockDALandDB();
+    @Override
+    public void updateMovie(Movie movie) {
+        movieDAOMock.updateMovie(movie);
     }
-
 }

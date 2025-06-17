@@ -2,7 +2,7 @@
 <html lang="fr" xmlns:th="http://www.thymeleaf.org">
 <!--      data-th-replace="~{layouts/base :: baseLayout(
       pageTitle=~{:: title}, content=~{:: .content}}, additionalCss=~{})}"-->
-<head th:replace="layouts/base :: baseLayout(~{::title},~{fragments/moviesList :: moviesList},~{})">
+<head th:replace="~{layouts/base :: baseLayout(~{::title},~{fragments/moviesList :: moviesList},~{})}">
     <meta charset="UTF-8">
     <Title>Filmothèque</Title>
     <link data-th-href="@{/global.css}" rel="stylesheet"/>

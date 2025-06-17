@@ -8,8 +8,8 @@
     <th:block data-th-replace="${additionalCss} ?: ~{}"></th:block>
 </head>
 <body>
-<div th:replace="fragments/header :: header">...</div>
+<div th:replace="~{fragments/header :: header}">...</div>
 <main th:replace="${content} ?: ~{}">Content</main>
-<div th:replace="fragments/footer :: footer">...</div>
+<div th:replace="~{fragments/footer :: footer}">...</div>
 </body>
 </html>

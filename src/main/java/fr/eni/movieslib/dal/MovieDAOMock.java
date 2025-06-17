@@ -37,8 +37,26 @@ public class MovieDAOMock implements MovieDAO {
     }
 
     @Override
-    public Movie update(int id, String title, int year, String genre, int duration, String synopsis, List<CastMember> actors, CastMember director, List<Review> reviews) {
-        return null;
+    public void updateMovie(Movie movie) {
+        Movie toUpdate = get(movie.getId());
+        if (movie.getDuration() != 0) {
+            toUpdate.setDuration(movie.getDuration());
+        }
+        if (movie.getDirector() != null) {
+            toUpdate.setDirector(movie.getDirector());
+        }
+        if (movie.getSynopsis() != null) {
+            toUpdate.setSynopsis(movie.getSynopsis());
+        }
+        if (movie.getTitle() != null) {
+            toUpdate.setTitle(movie.getTitle());
+        }
+        if (movie.getGenre() != null) {
+            toUpdate.setGenre(movie.getGenre());
+        }
+        if (movie.getReleaseDate() != 0) {
+            toUpdate.setReleaseDate(movie.getReleaseDate());
+        }
     }
 
     public Genre getGenreById(long id) {
@@ -54,13 +72,12 @@ public class MovieDAOMock implements MovieDAO {
         moviesList.add(movie);
     }
 
-    public void removeMovie(Movie movie) {
-        movie.setId(moviesIndex++);
-        moviesList.remove(movie);
+    public void removeMovie(long id) {
+        moviesList.remove(get(id));
     }
 
 
-    public void mockDALandDB() {
+    public MovieDAOMock() {
         // Création de la liste des genres
         for (int index = 0; index < genres.length; index++) {
             genresList.add(new Genre(index + 1, genres[index]));
@@ -85,7 +102,7 @@ public class MovieDAOMock implements MovieDAO {
         Movie jurassicPark = new Movie(moviesIndex++, "Jurassic Park", 1993, 128,
                 "Le film raconte l'histoire d'un milliardaire et son équipe de généticiens parvenant à ramener à la vie des dinosaures grâce au clonage.");
         jurassicPark.setGenre(genresList.get(1));
-        jurassicPark.setDirector(GetCastMemberById(1));
+        jurassicPark.setDirector(GetCastMemberById(1).toString());
         // Associer les acteurs
         jurassicPark.addActor(GetCastMemberById(4));
         jurassicPark.addActor(GetCastMemberById(5));
@@ -94,7 +111,7 @@ public class MovieDAOMock implements MovieDAO {
         Movie theFly = new Movie(moviesIndex++, "The Fly", 1986, 95,
                 "Il s'agit de l'adaptation cinématographique de la nouvelle éponyme de l'auteur George Langelaan.");
         theFly.setGenre(genresList.get(1));
-        theFly.setDirector(GetCastMemberById(2));
+        theFly.setDirector(GetCastMemberById(2).toString());
         // Associer les acteurs
         theFly.addActor(GetCastMemberById(5));
         theFly.addActor(GetCastMemberById(6));
@@ -103,7 +120,7 @@ public class MovieDAOMock implements MovieDAO {
         Movie theBFG = new Movie(moviesIndex++, "The BFG", 2016, 117,
                 "Le Bon Gros Géant est un géant bien différent des autres habitants du Pays des Géants.");
         theBFG.setGenre(genresList.get(4));
-        theBFG.setDirector(GetCastMemberById(1));
+        theBFG.setDirector(GetCastMemberById(1).toString());
         // Associer les acteurs
         theBFG.addActor(GetCastMemberById(7));
         theBFG.addActor(GetCastMemberById(8));
@@ -112,7 +129,7 @@ public class MovieDAOMock implements MovieDAO {
         Movie bienvenueChezLesChtis = new Movie(moviesIndex++, "Bienvenue chez les Ch'tis", 2008, 106,
                 "Philippe Abrams est directeur de la poste de Salon-de-Provence. Il est marié à Julie, dont le caractère dépressif lui rend la vie impossible. Pour lui faire plaisir, Philippe fraude afin d'obtenir une mutation sur la Côte d'Azur. Mais il est démasqué: il sera muté à Bergues, petite ville du Nord.");
         bienvenueChezLesChtis.setGenre(genresList.get(4));
-        bienvenueChezLesChtis.setDirector(GetCastMemberById(3));
+        bienvenueChezLesChtis.setDirector(GetCastMemberById(3).toString());
         // Associer les acteurs
         bienvenueChezLesChtis.addActor(GetCastMemberById(3));
         bienvenueChezLesChtis.addActor(GetCastMemberById(9));

@@ -51,7 +51,13 @@ public class MovieServiceImpl implements MovieService {
     }
 
     @Override
-    public void removeMovie(Movie movie) {
+    public void removeMovie(long id) {
 
     }
+
+    @Override
+    public void updateMovie(Movie movie) {
+
+    }
+
 }

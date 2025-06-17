@@ -27,32 +27,19 @@ public class MovieController {
     @GetMapping("/movie/{id}")
     public String getMovieById(Model model, @PathVariable long id) {
         try {
-            Movie selectedMovie = service.getMovieById(id);
-            if(selectedMovie == null) {
+            Movie movie = service.getMovieById(id);
+            if(movie == null) {
                 return "notFound";
             }
-            model.addAttribute("movie", selectedMovie);
+            model.addAttribute("movie", movie);
         } catch (Exception e) {
         }
         return "detail";
     }
 
     @PostMapping("/movie/{id}")
-    public String updateMovie(Movie movie, @PathVariable long id) {
-/*        Movie toUpdate = service.getMovieById(id);
-        service.removeMovie(toUpdate);
-        toUpdate = new Movie(movie.getTitle(), movie.getReleaseDate(), movie.getDuration(), movie.getSynopsis());
-        String[] myArray = movie.getDirector().toString().split(" ");
-        toUpdate.setDirector(new CastMember(myArray[0], myArray[1]));
-        myArray = movie.getActors().toString().split("- ");
-        ArrayList<CastMember> actors = new ArrayList<>();
-        for (String actor : myArray) {
-            String[] a = actor.split(" ");
-            CastMember b = new CastMember(a[0], a[1]);
-            actors.add(b);
-        }
-        toUpdate.setActors(actors);
-        service.addMovie(toUpdate);*/
+    public String updateMovie(Movie movie) {
+        service.updateMovie(movie);
         return "redirect:/";
     }
 

@@ -11,6 +11,5 @@ public interface MovieDAO {
     Movie create(long id, String title, int year, int duration, String synopsis);
     Movie get(long id);
     List<Movie> getAll();
-    Movie update(int id, String title, int year, String genre, int duration, String synopsis, List<CastMember> actors, CastMember director, List<Review> reviews);
-
+    void updateMovie(Movie movie);
 }
