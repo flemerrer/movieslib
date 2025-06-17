@@ -1,11 +1,9 @@
 <div class="content" th:fragment="moviesList">
-    <h2>Nos films</h2>
     <p>Genres populaires : <span th:each="genre: ${genresList}">
         <a href="" th:text="${genre}"></a>
         </span></p>
-<p>
-    <a href="/invalidate">vider la liste</a>
-</p>
+    <h2>Nos films</h2>
+<!--<p><a href="/invalidate">vider la liste</a></p>-->
     <table>
         <tr>
             <th scope="col">Genre</th>

@@ -1,4 +1,4 @@
-<div th:fragment="movieForm">
+<div class="content" th:fragment="movieForm">
     <h2 th:text="${movie.title}"></h2>
     <form th:object="${movie}" th:action="@{/movie/{id}(id=${movie.id})}" method="post">
         <ul class="flex-outer">
@@ -10,10 +10,9 @@
                                                                    th:field="*{director}"></li>
             <li><label for="duration">Durée (min) : </label><input type="text" id="duration"
                                                                    th:field="*{duration}"></li>
-            <li><label for="actors">Acteurs : </label><textarea id="actors" th:inline="text">
-[# th:each="actor: *{actors}"]- [[${actor}]]
-[/]
-            </textarea></li>
+<!--            TODO: replace textarea by dropdown select-->
+            <li><label for="actors">Acteurs : </label><textarea id="actors" th:inline="text">[# th:each="actor: *{actors}"]- [[${actor}]]
+[/]</textarea></li>
             <li><label for="synopsis">Synopsis : </label><textarea id="synopsis"
                                                                    th:field="*{synopsis}"></textarea></li>
             <li>
