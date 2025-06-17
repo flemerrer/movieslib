@@ -3,6 +3,9 @@
     <p>Genres populaires : <span th:each="genre: ${genresList}">
         <a href="" th:text="${genre}"></a>
         </span></p>
+<p>
+    <a href="/invalidate">vider la liste</a>
+</p>
     <table>
         <tr>
             <th scope="col">Genre</th>

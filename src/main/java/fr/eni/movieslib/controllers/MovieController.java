@@ -1,11 +1,11 @@
 package fr.eni.movieslib.controllers;
 
 import fr.eni.movieslib.bll_services.mock.MovieServiceMock;
-import fr.eni.movieslib.bo.movies.Genre;
 import fr.eni.movieslib.bo.movies.Movie;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.support.SessionStatus;
 
 import java.util.ArrayList;
 
@@ -23,6 +23,14 @@ public class MovieController {
     public String[] GetGenresList() {
         return service.getGenresList();
     }
+
+    //FIXME: doesn't work because it flushes the attribute after rendering ; need to find another way to implement it.
+    /*
+    @GetMapping("/invalidate")
+    public String invalidate(SessionStatus status) {
+        status.setComplete();
+        return "redirect:/";
+    }*/
 
     @GetMapping({"/", "/movies"})
     public String getAllMovies(Model model) {
