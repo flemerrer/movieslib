@@ -1,6 +1,7 @@
 package fr.eni.movieslib.controllers;
 
 import fr.eni.movieslib.bll_services.mock.MovieServiceMock;
+import fr.eni.movieslib.bo.movies.Genre;
 import fr.eni.movieslib.bo.movies.Movie;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -9,12 +10,18 @@ import org.springframework.web.bind.annotation.*;
 import java.util.ArrayList;
 
 @Controller
+@SessionAttributes({"genresList"})
 public class MovieController {
 
     public MovieServiceMock service;
 
     public MovieController(MovieServiceMock service) {
         this.service = service;
+    }
+
+    @ModelAttribute("genresList")
+    public String[] GetGenresList() {
+        return service.getGenresList();
     }
 
     @GetMapping({"/", "/movies"})
