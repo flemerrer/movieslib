@@ -11,7 +11,7 @@ public interface MovieService {
 
     Movie getMovieById(long id);
 
-    List<Genre> getGenresList();
+    String[] getGenresList();
 
     List<CastMember> getCastMembers();
 

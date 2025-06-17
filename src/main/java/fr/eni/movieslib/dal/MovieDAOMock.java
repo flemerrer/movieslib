@@ -1,90 +1,65 @@
-package fr.eni.movieslib.bll_services.mock;
+package fr.eni.movieslib.dal;
+
+import fr.eni.movieslib.bo.movies.Genre;
+import fr.eni.movieslib.bo.movies.Movie;
+import fr.eni.movieslib.bo.movies.Review;
+import fr.eni.movieslib.bo.users.CastMember;
+import fr.eni.movieslib.bo.users.RegisteredUser;
+import lombok.Getter;
 
 import java.util.ArrayList;
 import java.util.List;
 
+public class MovieDAOMock implements MovieDAO {
 
-import fr.eni.movieslib.bll_services.MovieService;
-import fr.eni.movieslib.bo.movies.Movie;
-import fr.eni.movieslib.bo.movies.Genre;
-import fr.eni.movieslib.bo.movies.Review;
-import fr.eni.movieslib.bo.users.CastMember;
-import fr.eni.movieslib.bo.users.RegisteredUser;
-import org.springframework.context.annotation.Profile;
-import org.springframework.stereotype.Service;
-
-@Service
-@Profile("dev")
-public class MockServiceImpl implements MovieService {
-    // Attributs statiques pour gérer les valeurs à afficher et simuler les données
-    // en base
     private static List<Movie> moviesList = new ArrayList<>();
     private static List<Genre> genresList = new ArrayList<>();
-    private static List<CastMember> CastMembers = new ArrayList<>();
-    private static int moviesIndex = 1;
-
-    // Représente la table en base de données des genres des films
+    @Getter
+    private static List<CastMember> castMembers = new ArrayList<>();
+    @Getter
     private static final String[] genres = { "Animation", "Science-fiction", "Documentaire", "Action", "Comédie",
             "Drame" };
+    private static int moviesIndex = 1;
 
-    public MockServiceImpl() {
+    @Override
+    public Movie create(long id, String title, int year, int duration, String synopsis) {
+        return null;
     }
 
     @Override
-    public List<Movie> getAllMovies() {
-        return moviesList;
-    }
-
-    /**
-     * \@return film si id correspond
-     * \@return null si inconnu
-     */
-    @Override
-    public Movie getMovieById(long id) {
+    public Movie get(long id) {
         return moviesList.stream().filter(item -> item.getId() == id).findAny().orElse(null);
     }
 
     @Override
-    public List<Genre> getGenresList() {
-        return genresList;
+    public List<Movie> getAll() {
+        return moviesList;
     }
 
     @Override
-    public List<CastMember> getCastMembers() {
-        return CastMembers;
+    public Movie update(int id, String title, int year, String genre, int duration, String synopsis, List<CastMember> actors, CastMember director, List<Review> reviews) {
+        return null;
     }
 
-    @Override
     public Genre getGenreById(long id) {
         return genresList.stream().filter(item -> item.getId() == id).findAny().orElse(null);
     }
 
-    /**
-     * \@return participant si id correspond
-     * \@return null si inconnu
-     */
-    @Override
     public CastMember GetCastMemberById(long id) {
-        return CastMembers.stream().filter(item -> item.getId() == id).findAny().orElse(null);
+        return castMembers.stream().filter(item -> item.getId() == id).findAny().orElse(null);
     }
 
-    @Override
     public void addMovie(Movie movie) {
-        // Sauvegarde du film
         movie.setId(moviesIndex++);
         moviesList.add(movie);
     }
 
-    @Override
     public void removeMovie(Movie movie) {
-        // Sauvegarde du film;
+        movie.setId(moviesIndex++);
         moviesList.remove(movie);
     }
 
-    /**
-     * Cette méthode permet de simuler le stockage en base de données et la remontée
-     * d'information
-     */
+
     public void mockDALandDB() {
         // Création de la liste des genres
         for (int index = 0; index < genres.length; index++) {
@@ -93,17 +68,17 @@ public class MockServiceImpl implements MovieService {
 
         // Création de la liste des participants aux films (acteurs et réalisateurs)
         // 3 réalisateurs dont 1 pour 2 films et 1 réalisateurs qui est aussi un acteur
-        CastMembers.add(new CastMember(1, "Spielberg", "Steven"));
-        CastMembers.add(new CastMember(2, "Cronenberg", "David"));
-        CastMembers.add(new CastMember(3, "Boon", "Dany"));
+        castMembers.add(new CastMember(1, "Spielberg", "Steven"));
+        castMembers.add(new CastMember(2, "Cronenberg", "David"));
+        castMembers.add(new CastMember(3, "Boon", "Dany"));
 
         // 2 acteurs par film et l'un d'eux dans 2 films
-        CastMembers.add(new CastMember(4, "Attenborough", "Richard"));
-        CastMembers.add(new CastMember(5, "Goldblum", "Jeff"));
-        CastMembers.add(new CastMember(6, "Davis", "Geena"));
-        CastMembers.add(new CastMember(7, "Rylance", "Mark"));
-        CastMembers.add(new CastMember(8, "Barnhill", "Ruby"));
-        CastMembers.add(new CastMember(9, "Merad", "Kad"));
+        castMembers.add(new CastMember(4, "Attenborough", "Richard"));
+        castMembers.add(new CastMember(5, "Goldblum", "Jeff"));
+        castMembers.add(new CastMember(6, "Davis", "Geena"));
+        castMembers.add(new CastMember(7, "Rylance", "Mark"));
+        castMembers.add(new CastMember(8, "Barnhill", "Ruby"));
+        castMembers.add(new CastMember(9, "Merad", "Kad"));
 
         // Création de la liste de films
         // 4 films

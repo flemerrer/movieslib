@@ -26,7 +26,7 @@ public class MovieServiceImpl implements MovieService {
     }
 
     @Override
-    public List<Genre> getGenresList() {
+    public String[] getGenresList() {
         return null;
     }
 

@@ -1,14 +1,22 @@
 package fr.eni.movieslib.bo.movies;
 
+import fr.eni.movieslib.bll_services.MovieService;
 import fr.eni.movieslib.bo.users.RegisteredUser;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.io.Serial;
+import java.io.Serializable;
+
 @Getter
 @Setter
 @NoArgsConstructor
-public class Review {
+public class Review implements Serializable {
+
+    @Serial
+    private static final long serialVersionUID = 1L;
+
     long id;
     int rating;
     String comment;

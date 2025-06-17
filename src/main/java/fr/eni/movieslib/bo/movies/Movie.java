@@ -1,5 +1,7 @@
 package fr.eni.movieslib.bo.movies;
 
+import java.io.Serial;
+import java.io.Serializable;
 import java.util.ArrayList;
 
 import fr.eni.movieslib.bo.users.CastMember;
@@ -10,7 +12,11 @@ import lombok.Setter;
 @Getter
 @Setter
 @NoArgsConstructor
-public class Movie {
+public class Movie implements Serializable {
+
+    @Serial
+    private static final long serialVersionUID = 1L;
+
     long id;
     String title;
     int releaseDate;

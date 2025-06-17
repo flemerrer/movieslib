@@ -5,12 +5,18 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.io.Serial;
+import java.io.Serializable;
 import java.util.ArrayList;
 
 @Getter
 @Setter
 @NoArgsConstructor
-public class RegisteredUser extends User {
+public class RegisteredUser extends User implements Serializable {
+
+    @Serial
+    private static final long serialVersionUID = 1L;
+
     String pseudo;
     String password;
     boolean isAdmin = false;

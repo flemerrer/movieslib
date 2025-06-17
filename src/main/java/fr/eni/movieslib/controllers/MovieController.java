@@ -1,6 +1,6 @@
 package fr.eni.movieslib.controllers;
 
-import fr.eni.movieslib.bll_services.mock.MockServiceImpl;
+import fr.eni.movieslib.bll_services.mock.MovieServiceMock;
 import fr.eni.movieslib.bo.movies.Movie;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -11,9 +11,9 @@ import java.util.ArrayList;
 @Controller
 public class MovieController {
 
-    public MockServiceImpl service;
+    public MovieServiceMock service;
 
-    public MovieController(MockServiceImpl service) {
+    public MovieController(MovieServiceMock service) {
         this.service = service;
     }
 
