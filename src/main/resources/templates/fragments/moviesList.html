@@ -18,7 +18,7 @@
             <td th:text="${movie.title}"></td>
             <td th:text="${movie.director}"></td>
             <td><a th:href="@{/movie/{id}(id=${movie.id})}">
-                <button>Détail</button>
+                <button class="primary" >Détail</button>
             </a></td>
         </tr>
     </table>

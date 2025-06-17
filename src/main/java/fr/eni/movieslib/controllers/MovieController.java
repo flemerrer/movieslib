@@ -1,7 +1,10 @@
 package fr.eni.movieslib.controllers;
 
+import fr.eni.movieslib.bll_services.mock.CastMemberServiceMock;
 import fr.eni.movieslib.bll_services.mock.MovieServiceMock;
 import fr.eni.movieslib.bo.movies.Movie;
+import fr.eni.movieslib.bo.users.CastMember;
+import fr.eni.movieslib.controllers.converters.StringToCastMemberConverter;
 import jakarta.validation.Valid;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -14,15 +17,15 @@ import java.util.ArrayList;
 @SessionAttributes({"genresList"})
 public class MovieController {
 
-    public MovieServiceMock service;
+    public MovieServiceMock serviceMovie;
 
     public MovieController(MovieServiceMock service) {
-        this.service = service;
+        this.serviceMovie = service;
     }
 
     @ModelAttribute("genresList")
     public String[] GetGenresList() {
-        return service.getGenresList();
+        return serviceMovie.getGenresList();
     }
 
     //FIXME: doesn't work because it flushes the attribute after rendering ; need to find another way to implement it.
@@ -35,7 +38,7 @@ public class MovieController {
 
     @GetMapping({"/", "/movies"})
     public String getAllMovies(Model model) {
-        ArrayList<Movie> allMovies = (ArrayList<Movie>) service.getAllMovies();
+        ArrayList<Movie> allMovies = (ArrayList<Movie>) serviceMovie.getAllMovies();
         model.addAttribute("movies", allMovies);
         return "movies";
     }
@@ -43,14 +46,28 @@ public class MovieController {
     @GetMapping("/movie/{id}")
     public String getMovieById(Model model, @PathVariable long id) {
         try {
-            Movie movie = service.getMovieById(id);
+            Movie movie = serviceMovie.getMovieById(id);
             if(movie == null) {
                 return "notFound";
             }
+            String actors = "";
             model.addAttribute("movie", movie);
+            model.addAttribute("actors", actors);
         } catch (Exception e) {
         }
         return "detail";
+    }
+
+    @PostMapping("/movie/{id}")
+    public String updateMovie(Movie movie) {
+        serviceMovie.updateMovie(movie);
+        return "redirect:/";
+    }
+
+    @PostMapping("/movie/{id}/actor/add")
+    public String addActor(CastMember castMember, @PathVariable long id) {
+        serviceMovie.getMovieById(id).addActor(castMember);
+        return "redirect:/movie/" + id;
     }
 
     @GetMapping("/movie/add")
@@ -64,14 +81,8 @@ public class MovieController {
         if (bindingResult.hasErrors()) {
             return "addMovie";
         }
-        service.addMovie(movie);
+        serviceMovie.addMovie(movie);
         return "redirect:/movies";
-    }
-
-    @PostMapping("/movie/{id}")
-    public String updateMovie(Movie movie) {
-        service.updateMovie(movie);
-        return "redirect:/";
     }
 
 }

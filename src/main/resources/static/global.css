@@ -72,19 +72,36 @@ td {
 
 button {
     padding: 15px;
-    background: #66c1e8;
-    color: whitesmoke;
     border: none;
     font-size: inherit;
     border-radius: 5px;
 }
 
 button:hover {
+    padding: 14px;
+    cursor: pointer;
+}
+
+.primary {
+    background: #66c1e8;
+    color: whitesmoke;
+}
+
+.primary:hover {
     background: whitesmoke;
     color: #66c1e8;
     border: 1px solid #66c1e8;
-    padding: 14px;
-    cursor: pointer;
+}
+
+.secondary {
+    background: #e86666;
+    color: whitesmoke;
+}
+
+.secondary:hover {
+    background: whitesmoke;
+    color: #e86666;
+    border: 1px solid #e86666;
 }
 
 a {

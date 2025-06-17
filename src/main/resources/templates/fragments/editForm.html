@@ -10,17 +10,28 @@
                                                                    th:field="*{director}" required></li>
             <li><label for="duration">Durée (min) : </label><input type="number" id="duration"
                                                                    th:field="*{duration}" required></li>
-<!--            <li><label for="actors">Acteurs : </label><textarea id="actors" th:inline="text">[# th:each="actor: *{actors}"]- [[${actor}]]-->
-<!--[/]</textarea></li>-->
+            <!--            <li><label for="actors">Acteurs : </label><textarea id="actors" th:inline="text">[# th:each="actor: *{actors}"]- [[${actor}]]-->
+            <!--[/]</textarea></li>-->
+            <li><label for="synopsis">Synopsis : </label><textarea id="synopsis"
+                                                                   th:field="*{synopsis}"></textarea></li>
+            <li>
             <li><label for="actors">Acteurs : </label>
                 <select id="actors" multiple>
                     <option th:each="actor: ${movie.actors}" th:text="${actor}"></option>
                 </select>
             </li>
-            <li><label for="synopsis">Synopsis : </label><textarea id="synopsis"
-                                                                   th:field="*{synopsis}"></textarea></li>
             <li>
-                <button type="submit">Modifier informations</button>
+                <button class="primary" type="submit">Modifier informations</button>
+            </li>
+        </ul>
+    </form>
+<!--FIXME:doesn't work as of now : Failed to convert property value of type 'java.lang.String' to required type 'long' for property 'id'; For input string: "{id}(id=${movie.id})-->
+    <form th:object="${actor}" th:action="@{/movie/{id}(id=${movie.id})/actor/add}" method="post">
+        <ul class="flex-outer">
+            <li><label for="actors-add">Ajouter acteur : </label><input type="text" id="actors-add" th:value="${actor}"
+                                                                        placeholder="Brad Pitt"></li>
+            <li>
+                <button class="secondary" type="submit">Ajouter Acteur</button>
             </li>
         </ul>
     </form>

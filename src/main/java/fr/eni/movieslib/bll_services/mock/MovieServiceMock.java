@@ -7,6 +7,7 @@ import fr.eni.movieslib.bo.movies.Movie;
 import fr.eni.movieslib.bo.movies.Genre;
 import fr.eni.movieslib.bo.users.CastMember;
 import fr.eni.movieslib.dal.MovieDAOMock;
+import fr.eni.movieslib.dal.MovieDAOMockFactory;
 import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Service;
 
@@ -17,7 +18,7 @@ public class MovieServiceMock implements MovieService {
     MovieDAOMock movieDAOMock;
 
     public MovieServiceMock() {
-        this.movieDAOMock = new MovieDAOMock();
+        this.movieDAOMock = MovieDAOMockFactory.getMovieDAO();
     }
 
     @Override
