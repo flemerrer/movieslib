@@ -20,9 +20,9 @@ public abstract class User implements Serializable {
     String firstName;
     String lastName;
 
-    public User(String firstName, String name) {
-        this.firstName = name;
-        this.lastName = firstName;
+    public User(String firstName, String lastName) {
+        this.firstName = firstName;
+        this.lastName = lastName;
         idCounter++;
         this.id = idCounter;
     }
@@ -36,6 +36,9 @@ public abstract class User implements Serializable {
 
     @Override
     public String toString() {
+        if (lastName.isEmpty()) {
+            return firstName;
+        }
         return firstName + " " + lastName;
     }
 

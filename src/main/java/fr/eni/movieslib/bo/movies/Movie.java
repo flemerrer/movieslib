@@ -23,8 +23,8 @@ public class Movie implements Serializable {
     int duration;
     String synopsis;
     Genre genre;
-    String director;
-    ArrayList<String> actors = new ArrayList<>();
+    CastMember director;
+    ArrayList<CastMember> actors = new ArrayList<>();
     ArrayList<Review> reviews = new ArrayList<>();
 
     public Movie(String title, int year, int duration, String synopsis) {
@@ -58,7 +58,7 @@ public class Movie implements Serializable {
     }
 
     public void addActor(CastMember actor) {
-        actors.add(actor.toString());
+        actors.add(actor);
     }
 
     public void addReview(Review review) {
