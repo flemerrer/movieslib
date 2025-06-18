@@ -2,7 +2,6 @@ package fr.eni.movieslib.controllers;
 
 import fr.eni.movieslib.bll_services.mock.MovieServiceMock;
 import fr.eni.movieslib.bo.movies.Movie;
-import jakarta.servlet.http.HttpServletRequest;
 import jakarta.validation.Valid;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -12,7 +11,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.ArrayList;
 
 @Controller
-@SessionAttributes({"genresList"})
+@SessionAttributes({"genresList, userSession"})
 public class MovieController {
 
     public MovieServiceMock serviceMovie;
