@@ -59,16 +59,19 @@ public class MovieController {
     }
 
     @PostMapping("/movie/{id}")
-    public String updateMovie(Movie movie) {
+    public String updateMovie(@Valid @ModelAttribute("movie") Movie movie, BindingResult bindingResult) {
+        if (bindingResult.hasErrors()) {
+            return "detail";
+        }
         serviceMovie.updateMovie(movie);
         return "redirect:/";
     }
 
-    @PostMapping("/movie/{id}/actor/add")
+/*    @PostMapping("/movie/{id}/actor/add")
     public String addActor(CastMember castMember, @PathVariable long id) {
         serviceMovie.getMovieById(id).addActor(castMember);
         return "redirect:/movie/" + id;
-    }
+    }*/
 
     @GetMapping("/movie/add")
     public String addMovie(Model model) {

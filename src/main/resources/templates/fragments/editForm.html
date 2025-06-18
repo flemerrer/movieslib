@@ -2,21 +2,28 @@
     <h2 th:text="${movie.title}"></h2>
     <form th:object="${movie}" th:action="@{/movie/{id}(id=${movie.id})}" method="post">
         <ul class="flex-outer">
-            <li><label for="genre">Genre : </label><input type="text" id="genre" th:field="*{genre}"></li>
-            <li><label for="releaseDate">Année : </label><input type="number" id="releaseDate"
+            <li><label for="genre">Genre : </label>
+                <input type="text" id="genre" th:field="*{genre}"></li>
+            <li><label for="releaseDate">Année : <br><div th:replace="~{fragments/error :: frag-error('releaseDate')}">...</div></label>
+                <input type="number" id="releaseDate"
                                                                 th:field="*{releaseDate}" required></li>
-            <li><label for="title">Titre : </label><input type="text" id="title" th:field="*{title}" required></li>
-            <li><label for="director">Réalisateur : </label><input type="text" id="director"
+            <li><label for="director">Réalisateur : </label>
+                <input type="text" id="director"
                                                                    th:field="*{director}" required></li>
-            <li><label for="duration">Durée (min) : </label><input type="number" id="duration"
+
+            <li><label for="title">Titre : <br><div th:replace="~{fragments/error :: frag-error('title')}">...</div></label>
+                <input type="text" id="title" th:field="*{title}" required></li>
+            <li><label for="duration">Durée (min) : <br><div th:replace="~{fragments/error :: frag-error('duration')}">...</div></label>
+                <input type="number" id="duration"
                                                                    th:field="*{duration}" required></li>
             <!--            <li><label for="actors">Acteurs : </label><textarea id="actors" th:inline="text">[# th:each="actor: *{actors}"]- [[${actor}]]-->
             <!--[/]</textarea></li>-->
-            <li><label for="synopsis">Synopsis : </label><textarea id="synopsis"
+            <li><label for="synopsis">Synopsis : </label>
+                <textarea id="synopsis"
                                                                    th:field="*{synopsis}"></textarea></li>
             <li>
             <li><label for="actors">Acteurs : </label>
-                <select id="actors" multiple>
+                <select id="actors" multiple size="3">
                     <option th:each="actor: ${movie.actors}" th:text="${actor}"></option>
                 </select>
             </li>
@@ -25,8 +32,7 @@
             </li>
         </ul>
     </form>
-<!--FIXME:doesn't work as of now : Failed to convert property value of type 'java.lang.String' to required type 'long' for property 'id'; For input string: "{id}(id=${movie.id})-->
-    <form th:object="${actor}" th:action="@{/movie/{id}(id=${movie.id})/actor/add}" method="post">
+<!--    <form th:object="${actor}" th:action="@{/movie/{id}(id=${movie.id})/actor/add}" method="post">
         <ul class="flex-outer">
             <li><label for="actors-add">Ajouter acteur : </label><input type="text" id="actors-add" th:value="${actor}"
                                                                         placeholder="Brad Pitt"></li>
@@ -34,5 +40,5 @@
                 <button class="secondary" type="submit">Ajouter Acteur</button>
             </li>
         </ul>
-    </form>
+    </form>-->
 </div>

@@ -5,10 +5,7 @@ import java.io.Serializable;
 import java.util.ArrayList;
 
 import fr.eni.movieslib.bo.users.CastMember;
-import jakarta.validation.constraints.NotBlank;
-import jakarta.validation.constraints.NotEmpty;
-import jakarta.validation.constraints.NotNull;
-import jakarta.validation.constraints.Size;
+import jakarta.validation.constraints.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -23,13 +20,21 @@ public class Movie implements Serializable {
 
     long id;
 
-    @Size(min = 2, max = 250, message="Le nom doit avoir au moins 2 caractères")
+    @NotBlank
+    @Size(min = 5, max = 250)
     String title;
 
+    @Min(1895)
     int releaseDate;
+
+    @Positive
     int duration;
+
+    //todo; implements validator if not too hard
     CastMember director;
+
     Genre genre;
+
     String synopsis;
     ArrayList<CastMember> actors = new ArrayList<>();
     ArrayList<Review> reviews = new ArrayList<>();
