@@ -5,26 +5,23 @@
             <li><label for="title">Titre : <br><div th:replace="~{fragments/error :: frag-error('title')}">...</div></label>
                 <input type="text" id="title" th:field="*{title}" required></li>
             <li><label for="releaseDate">Année : <br><div th:replace="~{fragments/error :: frag-error('releaseDate')}">...</div></label>
-                <input type="number" id="releaseDate"
-                                                                th:field="*{releaseDate}" required></li>
+                <input type="number" id="releaseDate" th:field="*{releaseDate}" required></li>
             <li><label for="director">Réalisateur : </label>
-                <input type="text" id="director"
-                                                                   th:field="*{director}" required></li>
+                <input type="text" id="director" th:field="*{director}" required></li>
             <li><label for="genre">Genre : </label>
-                <input type="text" id="genre" th:field="*{genre}"></li>
-<!--                <select id="genre" th:field="${movie.genre}">
-                    <option selected th:value="${movie.genre}" th:text="${movie.genre}"></option>
-                    <option th:each="genre: ${genresList}" th:text="${genre}"></option>
-                </select>-->
+                <select id="genre" th:field="*{genre}">
+                    <option th:each="genre: ${genresList}"
+                            th:text="${genre}"
+                            th:value="${genre}"
+                            th:selected="${genre} == *{genre}"></option>
+                </select>
             </li>
             <li><label for="duration">Durée (min) : <br><div th:replace="~{fragments/error :: frag-error('duration')}">...</div></label>
-                <input type="number" id="duration"
-                                                                   th:field="*{duration}" required></li>
+                <input type="number" id="duration" th:field="*{duration}" required></li>
             <!--            <li><label for="actors">Acteurs : </label><textarea id="actors" th:inline="text">[# th:each="actor: *{actors}"]- [[${actor}]]-->
             <!--[/]</textarea></li>-->
             <li><label for="synopsis">Synopsis : </label>
-                <textarea id="synopsis"
-                                                                   th:field="*{synopsis}"></textarea></li>
+                <textarea id="synopsis" th:field="*{synopsis}"></textarea></li>
             <li>
             <li><label for="actors">Acteurs : </label>
                 <select id="actors" multiple size="3">

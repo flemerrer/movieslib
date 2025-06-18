@@ -35,9 +35,7 @@ public class MovieController {
     }*/
 
     @GetMapping({"/", "/movies"})
-    public String getAllMovies(Model model, HttpServletRequest request) {
-        String[] genresList = (String[]) request.getSession().getAttribute("genresList");
-        model.addAttribute("genresList", genresList);
+    public String getAllMovies(Model model, @ModelAttribute("genresList") String[] genresList) {
         ArrayList<Movie> allMovies = (ArrayList<Movie>) serviceMovie.getAllMovies();
         model.addAttribute("movies", allMovies);
         return "movies";
@@ -74,10 +72,8 @@ public class MovieController {
     }*/
 
     @GetMapping("/movie/add")
-    public String addMovie(Model model, HttpServletRequest request) {
+    public String addMovie(Model model, @ModelAttribute("genresList") String[] genresList) {
         model.addAttribute("movie", new Movie());
-        String[] genresList = (String[]) request.getSession().getAttribute("genresList");
-        model.addAttribute("genresList", genresList);
         return "addMovie";
     }
 

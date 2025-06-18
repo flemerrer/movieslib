@@ -18,7 +18,7 @@ public class MovieDAOMock implements MovieDAO {
     @Getter
     private static List<CastMember> castMembers = new ArrayList<>();
     @Getter
-    private static final String[] genres = { "Animation", "Science-fiction", "Documentaire", "Action", "Comédie",
+    private static final String[] genres = { "Horreur", "Animation", "Science-fiction", "Documentaire", "Action", "Comédie",
             "Drame" };
     private static int moviesIndex = 1;
 
