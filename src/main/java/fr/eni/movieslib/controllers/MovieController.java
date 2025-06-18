@@ -1,10 +1,8 @@
 package fr.eni.movieslib.controllers;
 
-import fr.eni.movieslib.bll_services.mock.CastMemberServiceMock;
 import fr.eni.movieslib.bll_services.mock.MovieServiceMock;
 import fr.eni.movieslib.bo.movies.Movie;
-import fr.eni.movieslib.bo.users.CastMember;
-import fr.eni.movieslib.controllers.converters.StringToCastMemberConverter;
+import jakarta.servlet.http.HttpServletRequest;
 import jakarta.validation.Valid;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -37,7 +35,9 @@ public class MovieController {
     }*/
 
     @GetMapping({"/", "/movies"})
-    public String getAllMovies(Model model) {
+    public String getAllMovies(Model model, HttpServletRequest request) {
+        String[] genresList = (String[]) request.getSession().getAttribute("genresList");
+        model.addAttribute("genresList", genresList);
         ArrayList<Movie> allMovies = (ArrayList<Movie>) serviceMovie.getAllMovies();
         model.addAttribute("movies", allMovies);
         return "movies";
@@ -74,8 +74,10 @@ public class MovieController {
     }*/
 
     @GetMapping("/movie/add")
-    public String addMovie(Model model) {
+    public String addMovie(Model model, HttpServletRequest request) {
         model.addAttribute("movie", new Movie());
+        String[] genresList = (String[]) request.getSession().getAttribute("genresList");
+        model.addAttribute("genresList", genresList);
         return "addMovie";
     }
 

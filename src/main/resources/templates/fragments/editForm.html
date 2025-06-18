@@ -12,6 +12,11 @@
                                                                    th:field="*{director}" required></li>
             <li><label for="genre">Genre : </label>
                 <input type="text" id="genre" th:field="*{genre}"></li>
+<!--                <select id="genre" th:field="${movie.genre}">
+                    <option selected th:value="${movie.genre}" th:text="${movie.genre}"></option>
+                    <option th:each="genre: ${genresList}" th:text="${genre}"></option>
+                </select>-->
+            </li>
             <li><label for="duration">Durée (min) : <br><div th:replace="~{fragments/error :: frag-error('duration')}">...</div></label>
                 <input type="number" id="duration"
                                                                    th:field="*{duration}" required></li>
