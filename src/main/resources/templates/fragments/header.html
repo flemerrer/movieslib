@@ -1,8 +1,10 @@
 <div class="navbar" th:fragment="header">
     <a href="/"><img src="/film.png" alt="logo "></a>
-    <h1><a href="/">Filmothèque</a></h1>
+    <h1><a href="/" th:text="#{index.title}"></a></h1>
     <a class="menuLink" th:if="${userSession.getUsername() != null}"
                         th:href="@{/logout}">Logout</a>
     <a class="menuLink" th:unless="${userSession.getUsername() != null}"
                         th:href="@{/login?pseudo=John+Doe}">Login</a>
+    <a class="menuLink flag" href="/?language=EN"><img src="/English.webp" alt="EN"></a>
+    <a class="menuLink flag" href="/?language=FR"><img src="/French.webp" alt="FR"></a>
 </div>

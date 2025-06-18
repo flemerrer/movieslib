@@ -1,16 +1,16 @@
 <div class="content" th:fragment="moviesList">
-    <p>Genres populaires : <span th:each="genre: ${genresList}">
+    <p><span th:text="#{index.genres}"></span><span th:each="genre: ${genresList}">
         <a href="" th:text="${genre}"></a>
         </span></p>
-    <h2>Nos films</h2>
+    <h2 th:text="#{movies.title}"></h2>
     <!--<p><a href="/invalidate">vider la liste</a></p>-->
     <table>
         <tr>
-            <th scope="col">Titre</th>
-            <th scope="col">Année</th>
-            <th scope="col">Réalisateur</th>
-            <th scope="col">Genre</th>
-            <th scope="col">Action</th>
+            <th scope="col" th:text="#{movies.movieTitle}"></th>
+            <th scope="col" th:text="#{movies.releaseDate}"></th>
+            <th scope="col" th:text="#{movies.director}"></th>
+            <th scope="col" th:text="#{movies.genre}"></th>
+            <th scope="col" th:text="#{movies.action}"></th>
         </tr>
         <tr th:each="movie: ${movies}">
             <td th:text="${movie.title}"></td>
@@ -18,13 +18,13 @@
             <td th:text="${movie.director}"></td>
             <td th:text="${movie.genre}"></td>
             <td class="table-link"><a th:href="@{/movie/{id}(id=${movie.id})}">
-                <button class="secondary">Détail</button>
+                <button class="secondary" th:text="#{movies.detailButton}"></button>
             </a></td>
         </tr>
     </table>
     <div class="button-wrapper">
         <a id="add-movie" href="/movie/add">
-            <button class="primary">Ajouter un film</button>
+            <button class="primary" th:text="#{movies.addButton}"></button>
         </a>
     </div>
 </div>
