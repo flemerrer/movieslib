@@ -3,7 +3,7 @@
         <a href="" th:text="${genre}"></a>
         </span></p>
     <h2>Nos films</h2>
-<!--<p><a href="/invalidate">vider la liste</a></p>-->
+    <!--<p><a href="/invalidate">vider la liste</a></p>-->
     <table>
         <tr>
             <th scope="col">Titre</th>
@@ -17,9 +17,14 @@
             <td th:text="${movie.releaseDate}"></td>
             <td th:text="${movie.director}"></td>
             <td th:text="${movie.genre}"></td>
-            <td><a th:href="@{/movie/{id}(id=${movie.id})}">
-                <button class="primary" >Détail</button>
+            <td class="table-link"><a th:href="@{/movie/{id}(id=${movie.id})}">
+                <button class="secondary">Détail</button>
             </a></td>
         </tr>
     </table>
+    <div class="button-wrapper">
+        <a id="add-movie" href="/movie/add">
+            <button class="primary">Ajouter un film</button>
+        </a>
+    </div>
 </div>

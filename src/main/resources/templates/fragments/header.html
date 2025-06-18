@@ -1,5 +1,8 @@
 <div class="navbar" th:fragment="header">
     <a href="/"><img src="/film.png" alt="logo "></a>
     <h1><a href="/">Filmothèque</a></h1>
-    <a class="menuLink" href="/movie/add">Ajouter</a>
+    <a class="menuLink" th:if="${userSession.getUsername() != null}"
+                        th:href="@{/logout}">Logout</a>
+    <a class="menuLink" th:unless="${userSession.getUsername() != null}"
+                        th:href="@{/login?pseudo=John+Doe}">Login</a>
 </div>

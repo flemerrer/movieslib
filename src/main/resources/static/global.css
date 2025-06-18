@@ -12,7 +12,7 @@ body {
 }
 
 .navbar {
-    padding: 25px 50px;
+    padding: 25px 75px;
     background-color: whitesmoke;
     display: flex;
     flex-direction: row;
@@ -72,6 +72,18 @@ tbody tr:nth-child(odd) {
 td {
     padding: 15px;
 }
+
+.table-link {
+    text-align: center;
+}
+
+.button-wrapper {
+    padding: 15px;
+    display: flex;
+    justify-content: center;
+}
+
+#add-movie {}
 
 button {
     padding: 15px;

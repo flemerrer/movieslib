@@ -1,6 +1,7 @@
 package fr.eni.movieslib.controllers;
 
 import fr.eni.movieslib.bll_services.mock.MovieServiceMock;
+import fr.eni.movieslib.bo.context.User;
 import fr.eni.movieslib.bo.movies.Movie;
 import jakarta.validation.Valid;
 import org.springframework.stereotype.Controller;
@@ -24,6 +25,12 @@ public class MovieController {
     public String[] GetGenresList() {
         return serviceMovie.getGenresList();
     }
+
+    @ModelAttribute("userSession")
+    public User GetSession(@ModelAttribute("userSession") User userSession) {
+        return userSession;
+    }
+
 
     //FIXME: doesn't work because it flushes the attribute after rendering ; need to find another way to implement it.
     /*
