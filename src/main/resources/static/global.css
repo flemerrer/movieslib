@@ -25,10 +25,15 @@ body {
     h1 {
         flex-grow: 1;
         color: darkslategray;
+
+        a {
+            text-decoration: none;
+        }
     }
 
     .menuLink {
         align-self: center;
+        margin-right: 5%;
     }
 
     img {
