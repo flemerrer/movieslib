@@ -1,0 +1,15 @@
+<div class="content" th:fragment="createReviewForm">
+    <h2 th:text="#{movies.addReview} #{for} ${movie.title}"></h2>
+    <form th:action="@{/movie/${id}(id=${movie.id})/review/add}" method="post">
+        <ul class="flex-outer">
+            <li><label for="rating" th:text="#{review.rating}"></label>
+                <input type="number" id="rating" name="rating" required></li>
+            <li>
+                <label for="review"></label>
+                <textarea id="review" name="comment"></textarea></li>
+            <li>
+                <button class="primary" type="submit" th:text="#{movies.addReview}"></button>
+            </li>
+        </ul>
+    </form>
+</div>

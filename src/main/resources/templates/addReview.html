@@ -2,9 +2,9 @@
 <html lang="fr" xmlns:th="http://www.thymeleaf.org">
 <!--      data-th-replace="~{layouts/base :: baseLayout(
       pageTitle=~{:: title}, content=~{fragments/form :: movieForm}, additionalCss=title=~{})}"-->
-<head th:replace="~{layouts/base :: baseLayout(~{::title},~{fragments/createMovieForm :: createMovieForm},~{})}">
+<head th:replace="~{layouts/base :: baseLayout(~{::title},~{fragments/createReviewForm :: createReviewForm},~{})}">
     <meta charset="UTF-8">
-    <Title th:text="#{movies.addButton}"></Title>
+    <Title th:text="#{movies.addReview}"></Title>
     <link data-th-href="@{/global.css}" rel="stylesheet"/>
 </head>
 <body>

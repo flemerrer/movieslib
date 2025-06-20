@@ -17,12 +17,13 @@ body {
     display: flex;
     flex-direction: row;
     align-content: center;
-    gap: 50px;
+    gap: 25px;
     align-items: center;
     margin-bottom: 15px;
     box-shadow: lightgrey 5px 0 10px;
 
     h1 {
+        padding-left: 25px;
         flex-grow: 1;
         color: darkslategray;
 
@@ -41,7 +42,25 @@ body {
     }
 
     .flag img {
-        width: 25px;
+        height: 20px;
+    }
+
+    form {
+
+        display: flex;
+        align-items: center;
+        justify-content: end;
+        height: 40px;
+
+        #login {
+            padding: 5px 10px;
+            margin-left: 20px;
+        }
+
+        #login:hover {
+            padding: 4px 9px;
+        }
+
     }
 
 }
@@ -78,7 +97,7 @@ td {
 }
 
 .table-link {
-    text-align: center;
+    text-align: end;
 }
 
 .button-wrapper {

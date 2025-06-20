@@ -17,9 +17,11 @@
             <td th:text="${movie.releaseDate}"></td>
             <td th:text="${movie.director}"></td>
             <td th:text="${movie.genre}"></td>
-            <td class="table-link"><a th:href="@{/movie/{id}(id=${movie.id})}">
-                <button class="secondary" th:text="#{movies.detailButton}"></button>
-            </a></td>
+            <td class="table-link">
+                <a th:href="@{/movie/{id}(id=${movie.id})}"><button class="secondary" th:text="#{movies.detailButton}"></button></a>
+<!--                FIXME: ${id}(id=${movie.id} is not recognized by the controller-->
+                <a th:if="${userSession.getUsername() != null}" th:href="@{/movie/${id}(id=${movie.id})/review/add}"><button class="primary" th:text="#{movies.addReview}"></button></a>
+            </td>
         </tr>
     </table>
     <div class="button-wrapper">

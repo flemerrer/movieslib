@@ -4,19 +4,19 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-import java.io.Serializable;
-
 @Setter
 @Getter
 @NoArgsConstructor
-public class User implements Serializable {
-
-    private static final long serialVersionUID = 1L;
-
+public class UserContext {
     private String username = null;
 
-    public User(String username) {
+    public UserContext(String username) {
         this.username = username;
+    }
+
+    @Override
+    public String toString() {
+        return username;
     }
 
 }

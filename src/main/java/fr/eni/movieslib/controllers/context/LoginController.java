@@ -1,43 +1,43 @@
 package fr.eni.movieslib.controllers.context;
 
-import fr.eni.movieslib.bo.context.User;
+import fr.eni.movieslib.bll_services.UserContextService;
+import fr.eni.movieslib.bo.context.UserContext;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.SessionAttributes;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.bind.support.SessionStatus;
 
 @Controller
 @SessionAttributes({"userSession"})
 public class LoginController {
 
-    @ModelAttribute("userSession")
-    public User setUserSession() {
-        return new User();
+    UserContextService service;
+
+    public LoginController(UserContextService service) {
+        this.service = service;
     }
 
-    @GetMapping("/login")
+    @ModelAttribute("userSession")
+    public UserContext setUserSession() {
+        return service.getUserContext();
+    }
+
+    @PostMapping("/login")
     public String login(
-            @ModelAttribute("userSession") User userSession,
-            @RequestParam(required = false, name ="pseudo") String pseudo,
-            Model model) {
-        User requestLogin = new User(pseudo);
-        model.addAttribute("userRequest", requestLogin);
-        if (pseudo != null) {
-            userSession.setUsername(pseudo);
+            @ModelAttribute("userSession") UserContext userSession,
+            @RequestParam(required = false, name ="pseudo") String pseudo) {
+        if (!pseudo.isEmpty()) {
+            userSession = service.setNewUser(pseudo);
+            System.out.println(userSession.getUsername() + " is logged in");
         } else {
             userSession.setUsername(null);
         }
-        System.out.println(userSession.getUsername() + " is logged in");
         return "redirect:/";
     }
 
     @GetMapping("/logout")
-    public String logout(@ModelAttribute("userSession") User userSession, SessionStatus status) {
-        status.setComplete();
+    public String logout(@ModelAttribute("userSession") UserContext userSession, SessionStatus status) {
         System.out.println(userSession.getUsername() + " is logged out");
+        service.flushSession();
         return "redirect:/";
     }
 

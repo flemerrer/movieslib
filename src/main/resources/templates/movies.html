@@ -4,7 +4,7 @@
       pageTitle=~{:: title}, content=~{:: .content}}, additionalCss=~{})}"-->
 <head th:replace="~{layouts/base :: baseLayout(~{::title},~{fragments/moviesList :: moviesList},~{})}">
     <meta charset="UTF-8">
-    <Title>Filmothèque</Title>
+    <Title th:text="#{index.title}"></Title>
     <link data-th-href="@{/global.css}" rel="stylesheet"/>
 </head>
 <body>

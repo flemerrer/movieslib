@@ -22,6 +22,10 @@ public class Review implements Serializable {
     String comment;
     RegisteredUser member;
 
+    public Review(int rating, String comment) {
+        this.rating = rating;
+    }
+
     public Review(int rating, String comment, RegisteredUser member) {
         this.rating = rating;
         this.comment = comment;
