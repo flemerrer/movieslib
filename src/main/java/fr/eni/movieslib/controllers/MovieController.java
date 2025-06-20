@@ -87,7 +87,7 @@ public class MovieController {
         return "redirect:/movie/" + id;
     }*/
 
-    @GetMapping("/movie/{id}/review/add")
+    @GetMapping("/movie/review/add/{id}")
     public String createReview(Model model, @PathVariable long id) {
         System.out.println(id);
         try {
@@ -102,10 +102,10 @@ public class MovieController {
         return "addReview";
     }
 
-    @PostMapping("/movie/{id}/review/add")
+    @PostMapping("/movie/review/add/{id}")
     public String addReview(@PathVariable long id, @ModelAttribute("review") Review review, @RequestParam("rating") int rating, @RequestParam("comment") String comment) {
         serviceMovie.getMovieById(id).addReview(new Review(rating, comment));
-        return "redirect:/";
+        return "redirect:/movie/"+id;
     }
 
     @GetMapping("/movie/add")

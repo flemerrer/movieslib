@@ -29,10 +29,16 @@
                 </select>
             </li>
             <li>
-                <button class="primary" type="submit" th:text="#{movies.detail.edit}"></button>
+                <button class="secondary" type="submit" th:text="#{movies.detail.edit}"></button>
             </li>
         </ul>
     </form>
+    <h2 th:text="#{movies.reviews}"></h2>
+    <ul class="flex-outer">
+        <li th:each="review: ${movie.reviews}" th:text="${review.rating}+ '★ — ' + ${review.comment}"></li>
+        <li><a th:if="${userSession.getUsername() != null}" th:href="@{/movie/review/add/{id}(id=${movie.id})}"><button class="primary" th:text="#{movies.addReview}"></button></a></li>
+    </ul>
+    <br/>
 <!--    <form th:object="${actor}" th:action="@{/movie/{id}(id=${movie.id})/actor/add}" method="post">
         <ul class="flex-outer">
             <li><label for="actors-add">Ajouter acteur : </label><input type="text" id="actors-add" th:value="${actor}"
