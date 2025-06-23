@@ -24,7 +24,7 @@
                 <textarea id="synopsis" th:field="*{synopsis}"></textarea></li>
             <li>
             <li><label for="actors" th:text="#{movies.detail.actors}"></label>
-                <select id="actors" multiple size="3">
+                <select id="actors" disabled multiple size="3">
                     <option th:each="actor: ${movie.actors}" th:text="${actor}"></option>
                 </select>
             </li>

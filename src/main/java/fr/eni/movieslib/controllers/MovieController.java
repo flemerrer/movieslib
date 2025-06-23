@@ -89,8 +89,8 @@ public class MovieController {
     }*/
 
     @GetMapping("/movie/review/add/{id}")
-    public String createReview(Model model, @PathVariable long id) {
-        System.out.println(id);
+    public String createReview(Model model, @PathVariable long id, @ModelAttribute("review") Review review) {
+        model.addAttribute("review", review);
         try {
             Movie movie = serviceMovie.getMovieById(id);
             if(movie == null) {
@@ -104,8 +104,11 @@ public class MovieController {
     }
 
     @PostMapping("/movie/review/add/{id}")
-    public String addReview(@PathVariable long id, @ModelAttribute("review") Review review, @RequestParam("rating") int rating, @RequestParam("comment") String comment, @ModelAttribute("userSession") UserContext userContext) {
-        serviceMovie.getMovieById(id).addReview(new Review(rating, comment, new RegisteredUser(null, null, userContext.getUsername(), null)));
+    public String addReview(@Valid @ModelAttribute("review") Review review, BindingResult bindingResult, @PathVariable long id, @ModelAttribute("userSession") UserContext userContext) {
+        if (bindingResult.hasErrors()) {
+            return "redirect:/movie/review/add/"+id;
+        }
+        serviceMovie.getMovieById(id).addReview(new Review(review.getRating(), review.getComment(), new RegisteredUser(null, null, userContext.getUsername(), null)));
         return "redirect:/movie/"+id;
     }
 

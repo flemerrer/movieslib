@@ -26,7 +26,7 @@
     </table>
     <div class="button-wrapper">
         <a id="add-movie" href="/movie/add">
-            <button class="primary" th:text="#{movies.addButton}"></button>
+            <button class="primary" th:if="${userSession.isAdmin()}" th:text="#{movies.addButton}"></button>
         </a>
     </div>
 </div>

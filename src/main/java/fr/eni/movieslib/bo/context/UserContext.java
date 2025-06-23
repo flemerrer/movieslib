@@ -19,4 +19,8 @@ public class UserContext {
         return username;
     }
 
+    public boolean isAdmin(){
+        return true;
+    }
+
 }
