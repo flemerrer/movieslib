@@ -5,6 +5,7 @@ import fr.eni.movieslib.bll_services.mock.MovieServiceMock;
 import fr.eni.movieslib.bo.context.UserContext;
 import fr.eni.movieslib.bo.movies.Movie;
 import fr.eni.movieslib.bo.movies.Review;
+import fr.eni.movieslib.bo.users.RegisteredUser;
 import jakarta.validation.Valid;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -103,8 +104,8 @@ public class MovieController {
     }
 
     @PostMapping("/movie/review/add/{id}")
-    public String addReview(@PathVariable long id, @ModelAttribute("review") Review review, @RequestParam("rating") int rating, @RequestParam("comment") String comment) {
-        serviceMovie.getMovieById(id).addReview(new Review(rating, comment));
+    public String addReview(@PathVariable long id, @ModelAttribute("review") Review review, @RequestParam("rating") int rating, @RequestParam("comment") String comment, @ModelAttribute("userSession") UserContext userContext) {
+        serviceMovie.getMovieById(id).addReview(new Review(rating, comment, new RegisteredUser(null, null, userContext.getUsername(), null)));
         return "redirect:/movie/"+id;
     }
 

@@ -22,8 +22,8 @@ public class RegisteredUser extends User implements Serializable {
     boolean isAdmin = false;
     ArrayList<Review> reviews = new ArrayList<>();
 
-    public RegisteredUser(long id, String name, String firstName, String pseudo, String password) {
-        super(id, name, firstName);
+    public RegisteredUser(long id, String lastName, String firstName, String pseudo, String password) {
+        super(id, lastName, firstName);
         this.pseudo = pseudo;
         this.password = password;
     }
