@@ -1,5 +1,6 @@
 package fr.eni.movieslib.bo.context;
 
+import fr.eni.movieslib.bo.users.RegisteredUser;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -9,18 +10,16 @@ import lombok.Setter;
 @NoArgsConstructor
 public class UserContext {
     private String username = null;
+    boolean isAdmin;
 
-    public UserContext(String username) {
-        this.username = username;
+    public UserContext(RegisteredUser user) {
+        this.username = user.getPseudo();
+        this.isAdmin = user.isAdmin();
     }
 
     @Override
     public String toString() {
         return username;
-    }
-
-    public boolean isAdmin(){
-        return true;
     }
 
 }

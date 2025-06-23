@@ -9,9 +9,8 @@ import lombok.Getter;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Stream;
 
-public class MovieDAOMock implements MovieDAO {
+public class MovieDAOMock {
 
     private static List<Movie> moviesList = new ArrayList<>();
     private static List<Genre> genresList = new ArrayList<>();
@@ -22,22 +21,18 @@ public class MovieDAOMock implements MovieDAO {
             "Drame" };
     private static int moviesIndex = 1;
 
-    @Override
     public Movie create(long id, String title, int year, int duration, String synopsis) {
         return null;
     }
 
-    @Override
     public Movie get(long id) {
         return moviesList.stream().filter(item -> item.getId() == id).findAny().orElse(null);
     }
 
-    @Override
     public List<Movie> getAll() {
         return moviesList;
     }
 
-    @Override
     public void updateMovie(Movie movie) {
         Movie toUpdate = get(movie.getId());
         if (movie.getDuration() > 0) {

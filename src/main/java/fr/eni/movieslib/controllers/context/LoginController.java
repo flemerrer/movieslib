@@ -1,7 +1,9 @@
 package fr.eni.movieslib.controllers.context;
 
 import fr.eni.movieslib.bll_services.UserContextService;
+import fr.eni.movieslib.bll_services.UserService;
 import fr.eni.movieslib.bo.context.UserContext;
+import fr.eni.movieslib.bo.users.RegisteredUser;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.bind.support.SessionStatus;
@@ -10,9 +12,11 @@ import org.springframework.web.bind.support.SessionStatus;
 @SessionAttributes({"userSession"})
 public class LoginController {
 
+    UserService userService;
     UserContextService service;
 
-    public LoginController(UserContextService service) {
+    public LoginController(UserContextService service, UserService userService) {
+        this.userService = userService;
         this.service = service;
     }
 
@@ -26,7 +30,13 @@ public class LoginController {
             @ModelAttribute("userSession") UserContext userSession,
             @RequestParam(required = false, name ="pseudo") String pseudo) {
         if (!pseudo.isEmpty()) {
-            userSession = service.setNewUser(pseudo);
+            RegisteredUser queriedUser = userService.getUserByName(userSession.getUsername());
+            if (queriedUser != null) {
+                userSession = service.setNewUser(queriedUser.getPseudo());
+            } else {
+                userService.addUser(new RegisteredUser(null, null, pseudo, null));
+                userSession = service.setNewUser(pseudo);
+            }
             System.out.println(userSession.getUsername() + " is logged in");
         } else {
             userSession.setUsername(null);

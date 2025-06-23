@@ -3,6 +3,7 @@
       data-th-fragment="baseLayout(pageTitle, content, additionalCss)">
 <head>
     <meta charset="UTF-8">
+    <meta http-equiv="Content-Type" content="text/html;charset=utf-8">
     <title data-th-replace="${pageTitle}">Title</title>
     <link data-th-href="@{/global.css}" rel="stylesheet"/>
     <th:block data-th-replace="${additionalCss} ?: ~{}"></th:block>

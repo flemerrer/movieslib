@@ -17,7 +17,7 @@ public class CastMember extends User implements Serializable {
     @Serial
     private static final long serialVersionUID = 1L;
 
-    Roles role;
+    boolean isDirector;
     ArrayList<Movie> movies = new ArrayList<>();
 
     public CastMember(String firstName, String lastName) {

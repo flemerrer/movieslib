@@ -1,13 +1,11 @@
 package fr.eni.movieslib.bo.movies;
 
-import fr.eni.movieslib.bll_services.MovieService;
 import fr.eni.movieslib.bo.users.RegisteredUser;
-import jakarta.validation.constraints.Max;
-import jakarta.validation.constraints.Min;
-import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.hibernate.validator.constraints.Range;
 
 import java.io.Serial;
 import java.io.Serializable;
@@ -22,7 +20,8 @@ public class Review implements Serializable {
 
     long id;
 
-    @Min(1) @Max(5)
+    @NotNull
+    @Range(min = 1, max = 5)
     int rating;
 
     String comment;

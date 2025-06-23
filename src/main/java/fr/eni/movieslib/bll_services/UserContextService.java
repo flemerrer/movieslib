@@ -10,17 +10,15 @@ import org.springframework.stereotype.Service;
 public class UserContextService {
 
     private UserContext userContext;
+    private UserService userService;
 
-    public UserContextService() {
-        userContext = new UserContext();
+    public UserContextService(UserService userService) {
+        this.userContext = new UserContext();
+        this.userService = userService;
     }
 
     public UserContext setNewUser(String pseudo) {
-        userContext = new UserContext(pseudo);
-        return userContext;
-    }
-
-    public UserContext getUserContext() {
+        userContext = new UserContext(userService.getUserByName(pseudo));
         return userContext;
     }
 
