@@ -35,8 +35,8 @@ public class UserServiceMock implements UserService {
     }
 
     @Override
-    public void delete(RegisteredUser user) {
-        userDAOMock.deleteUser();
+    public void delete(long id) {
+        userDAOMock.deleteUser(id);
     }
 
 }

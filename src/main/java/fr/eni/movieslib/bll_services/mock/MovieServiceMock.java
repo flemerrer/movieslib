@@ -32,22 +32,18 @@ public class MovieServiceMock implements MovieService {
         return movieDAOMock.get(id);
     }
 
-    @Override
     public String[] getGenresList() {
         return MovieDAOMock.getGenres();
     }
 
-    @Override
     public List<CastMember> getCastMembers() {
         return MovieDAOMock.getCastMembers();
     }
 
-    @Override
     public Genre getGenreById(long id) {
         return movieDAOMock.getGenreById(id);
     }
 
-    @Override
     public CastMember GetCastMemberById(long id) {
         return movieDAOMock.GetCastMemberById(id);
     }
@@ -72,12 +68,9 @@ public class MovieServiceMock implements MovieService {
         movieDAOMock.updateMovie(movie);
     }
 
-    @Override
     public void addReview(Review review) {
-
     }
 
-    @Override
     public List<Review> getMovieReviews(long id) {
         return List.of();
     }

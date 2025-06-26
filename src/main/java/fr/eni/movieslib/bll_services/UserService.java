@@ -8,5 +8,5 @@ public interface UserService {
     List<RegisteredUser> findAll();
     RegisteredUser findByEmail(String username);
     void add(RegisteredUser user);
-    void delete(RegisteredUser user);
+    void delete(long id);
 }

@@ -1,7 +1,6 @@
 package fr.eni.movieslib.controllers;
 
-import fr.eni.movieslib.bll_services.MovieService;
-import fr.eni.movieslib.bll_services.UserContextServiceImpl;
+import fr.eni.movieslib.bll_services.*;
 import fr.eni.movieslib.bo.context.UserContext;
 import fr.eni.movieslib.bo.movies.Movie;
 import fr.eni.movieslib.bo.movies.Review;
@@ -13,32 +12,39 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
+import java.util.List;
 
 @Controller
 @SessionAttributes({"genresList, userSession"})
 public class MovieController {
 
-    public MovieService serviceMovie;
-    public UserContextServiceImpl userService;
+    MovieService serviceMovie;
+    UserContextService serviceUser;
+    ReviewService serviceReview;
+    CastMemberService serviceCastMember;
+    GenreService serviceGenre;
 
-    public MovieController(MovieService movieService,  UserContextServiceImpl userService) {
+    public MovieController(MovieService movieService,  UserContextService userService, ReviewService reviewService, CastMemberService castMemberService, GenreService genreService) {
         this.serviceMovie = movieService;
-        this.userService = userService;
+        this.serviceUser = userService;
+        this.serviceReview = reviewService;
+        this.serviceCastMember = castMemberService;
+        this.serviceGenre = genreService;
     }
 
     @ModelAttribute("userSession")
     public UserContext setUserSession() {
-        return userService.getUserContext();
+        return serviceUser.getUserContext();
     }
 
     @ModelAttribute("genresList")
-    public String[] GetGenresList() {
-        return serviceMovie.getGenresList();
+    public List<String> GetGenresList() {
+        return serviceGenre.findAll();
     }
 
     @ModelAttribute("userSession")
     public UserContext GetSession(@ModelAttribute("userSession") UserContext userContext) {
-        return userService.getUserContext();
+        return serviceUser.getUserContext();
     }
 
     //FIXME: doesn't work because it flushes the attribute after rendering ; need to find another way to implement it.
@@ -108,7 +114,7 @@ public class MovieController {
         if (bindingResult.hasErrors()) {
             return "redirect:/movie/review/add/"+id;
         }
-        serviceMovie.findById(id).addReview(new Review(review.getRating(), review.getComment(), new RegisteredUser(null, null, userContext.getUsername(), null)));
+        serviceReview.add();
         return "redirect:/movie/"+id;
     }
 

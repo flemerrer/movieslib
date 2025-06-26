@@ -9,7 +9,7 @@ import org.springframework.stereotype.Service;
 
 @Service
 @Profile("dev")
-public class CastMemberServiceMock implements CastMemberService {
+public class CastMemberServiceMock {
 
     MovieDAOMock movieDAOMock;
 
@@ -17,12 +17,10 @@ public class CastMemberServiceMock implements CastMemberService {
         this.movieDAOMock = MovieDAOMockFactory.getMovieDAO();
     }
 
-    @Override
     public void add(String firstName, String lastName) {
 
     }
 
-    @Override
     public void add(CastMember castMember) {
         CastMember comparedMember = movieDAOMock.GetCastMemberById(castMember.getId());
         if (comparedMember == null) {

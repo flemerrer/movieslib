@@ -22,7 +22,7 @@ public class UserDAOMock {
         return usersList.stream().filter(e -> e.getEmail().equals(username)).findFirst().orElse(null);
     }
 
-    public void deleteUser() {
+    public void deleteUser(long id) {
     }
 
     public UserDAOMock() {

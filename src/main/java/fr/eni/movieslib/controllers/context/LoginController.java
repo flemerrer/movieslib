@@ -1,6 +1,6 @@
 package fr.eni.movieslib.controllers.context;
 
-import fr.eni.movieslib.bll_services.UserContextServiceImpl;
+import fr.eni.movieslib.bll_services.UserContextService;
 import fr.eni.movieslib.bll_services.UserService;
 import fr.eni.movieslib.bo.context.UserContext;
 import fr.eni.movieslib.bo.users.RegisteredUser;
@@ -13,9 +13,9 @@ import org.springframework.web.bind.support.SessionStatus;
 public class LoginController {
 
     UserService userService;
-    UserContextServiceImpl service;
+    UserContextService service;
 
-    public LoginController(UserContextServiceImpl service, UserService userService) {
+    public LoginController(UserContextService service, UserService userService) {
         this.userService = userService;
         this.service = service;
     }

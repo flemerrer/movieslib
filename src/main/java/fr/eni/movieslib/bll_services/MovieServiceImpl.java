@@ -23,32 +23,32 @@ public class MovieServiceImpl  implements MovieService {
 
     @Override
     public List<Movie> findAll() {
-        return List.of();
+        return movieDAO.findAll();
     }
 
     @Override
     public Movie findById(long id) {
-        return null;
+        return movieDAO.findById(id);
     }
 
     @Override
     public void add(Movie movie) {
-
+        movieDAO.add(movie);
     }
 
     @Override
     public String getTitleById(long id) {
-        return "";
+        return movieDAO.getTitle(id);
     }
 
     @Override
     public void delete(long id) {
-
+        movieDAO.delete(id);
     }
 
     @Override
     public void update(Movie movie) {
-
+        movieDAO.update(movie);
     }
 
 }
