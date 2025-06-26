@@ -23,12 +23,12 @@ public class MovieServiceMock implements MovieService {
     }
 
     @Override
-    public List<Movie> getAllMovies() {
+    public List<Movie> findAll() {
         return movieDAOMock.getAll();
     }
 
     @Override
-    public Movie getMovieById(long id) {
+    public Movie findById(long id) {
         return movieDAOMock.get(id);
     }
 
@@ -53,22 +53,22 @@ public class MovieServiceMock implements MovieService {
     }
 
     @Override
-    public void addMovie(Movie movie) {
+    public void add(Movie movie) {
         movieDAOMock.addMovie(movie);
     }
 
     @Override
-    public String getMovieTitle(long id) {
+    public String getTitleById(long id) {
         return "";
     }
 
     @Override
-    public void removeMovie(long id) {
+    public void delete(long id) {
         movieDAOMock.removeMovie(id);
     }
 
     @Override
-    public void updateMovie(Movie movie) {
+    public void update(Movie movie) {
         movieDAOMock.updateMovie(movie);
     }
 

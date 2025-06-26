@@ -20,22 +20,22 @@ public class UserServiceMock implements UserService {
     }
 
     @Override
-    public List<RegisteredUser> getAllUsers() {
+    public List<RegisteredUser> findAll() {
         return userDAOMock.getAllUsers();
     }
 
     @Override
-    public RegisteredUser getUserByName(String username) {
+    public RegisteredUser findByEmail(String username) {
         return userDAOMock.getUserByUsername(username);
     }
 
     @Override
-    public void addUser(RegisteredUser user) {
+    public void add(RegisteredUser user) {
         userDAOMock.createUser(user);
     }
 
     @Override
-    public void removeUser(RegisteredUser user) {
+    public void delete(RegisteredUser user) {
         userDAOMock.deleteUser();
     }
 

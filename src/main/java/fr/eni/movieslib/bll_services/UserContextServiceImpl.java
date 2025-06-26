@@ -7,18 +7,18 @@ import org.springframework.stereotype.Service;
 
 @Getter @Setter
 @Service
-public class UserContextService {
+public class UserContextServiceImpl {
 
     private UserContext userContext;
     private UserService userService;
 
-    public UserContextService(UserService userService) {
+    public UserContextServiceImpl(UserService userService) {
         this.userContext = new UserContext();
         this.userService = userService;
     }
 
     public UserContext setNewUser(String email) {
-        userContext = new UserContext(userService.getUserByName(email));
+        userContext = new UserContext(userService.findByEmail(email));
         return userContext;
     }
 

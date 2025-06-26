@@ -1,7 +1,7 @@
 package fr.eni.movieslib.controllers;
 
-import fr.eni.movieslib.bll_services.UserContextService;
-import fr.eni.movieslib.bll_services.mock.MovieServiceMock;
+import fr.eni.movieslib.bll_services.MovieService;
+import fr.eni.movieslib.bll_services.UserContextServiceImpl;
 import fr.eni.movieslib.bo.context.UserContext;
 import fr.eni.movieslib.bo.movies.Movie;
 import fr.eni.movieslib.bo.movies.Review;
@@ -18,10 +18,10 @@ import java.util.ArrayList;
 @SessionAttributes({"genresList, userSession"})
 public class MovieController {
 
-    public MovieServiceMock serviceMovie;
-    public UserContextService userService;
+    public MovieService serviceMovie;
+    public UserContextServiceImpl userService;
 
-    public MovieController(MovieServiceMock movieService,  UserContextService userService) {
+    public MovieController(MovieService movieService,  UserContextServiceImpl userService) {
         this.serviceMovie = movieService;
         this.userService = userService;
     }
@@ -51,7 +51,7 @@ public class MovieController {
 
     @GetMapping({"/", "/movies"})
     public String getAllMovies(Model model, @ModelAttribute("genresList") String[] genresList, @ModelAttribute("userSession") UserContext userContext) {
-        ArrayList<Movie> allMovies = (ArrayList<Movie>) serviceMovie.getAllMovies();
+        ArrayList<Movie> allMovies = (ArrayList<Movie>) serviceMovie.findAll();
         model.addAttribute("movies", allMovies);
         model.addAttribute("userSession", userContext);
         return "movies";
@@ -60,7 +60,7 @@ public class MovieController {
     @GetMapping("/movie/{id}")
     public String getMovieById(Model model, @PathVariable long id) {
         try {
-            Movie movie = serviceMovie.getMovieById(id);
+            Movie movie = serviceMovie.findById(id);
             if(movie == null) {
                 return "notFound";
             }
@@ -78,7 +78,7 @@ public class MovieController {
         if (bindingResult.hasErrors()) {
             return "detail";
         }
-        serviceMovie.updateMovie(movie);
+        serviceMovie.update(movie);
         return "redirect:/";
     }
 
@@ -92,7 +92,7 @@ public class MovieController {
     public String createReview(Model model, @PathVariable long id, @ModelAttribute("review") Review review) {
         model.addAttribute("review", review);
         try {
-            Movie movie = serviceMovie.getMovieById(id);
+            Movie movie = serviceMovie.findById(id);
             if(movie == null) {
                 return "notFound";
             }
@@ -108,7 +108,7 @@ public class MovieController {
         if (bindingResult.hasErrors()) {
             return "redirect:/movie/review/add/"+id;
         }
-        serviceMovie.getMovieById(id).addReview(new Review(review.getRating(), review.getComment(), new RegisteredUser(null, null, userContext.getUsername(), null)));
+        serviceMovie.findById(id).addReview(new Review(review.getRating(), review.getComment(), new RegisteredUser(null, null, userContext.getUsername(), null)));
         return "redirect:/movie/"+id;
     }
 
@@ -123,7 +123,7 @@ public class MovieController {
         if (bindingResult.hasErrors()) {
             return "addMovie";
         }
-        serviceMovie.addMovie(movie);
+        serviceMovie.add(movie);
         return "redirect:/movies";
     }
 
