@@ -40,7 +40,7 @@ public class RegisteredUser extends User implements Serializable {
                 ", id=" + id +
                 ", name='" + firstName + '\'' +
                 ", firstName='" + lastName + '\'' +
-                ", pseudo='" + email + '\'' +
+                ", email='" + email + '\'' +
                 '}';
     }
 }

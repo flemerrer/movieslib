@@ -28,14 +28,14 @@ public class LoginController {
     @PostMapping("/login")
     public String login(
             @ModelAttribute("userSession") UserContext userSession,
-            @RequestParam(required = false, name ="pseudo") String pseudo) {
-        if (!pseudo.isEmpty()) {
+            @RequestParam(required = false, name ="email") String email) {
+        if (!email.isEmpty()) {
             RegisteredUser queriedUser = userService.getUserByName(userSession.getUsername());
             if (queriedUser != null) {
                 userSession = service.setNewUser(queriedUser.getEmail());
             } else {
-                userService.addUser(new RegisteredUser(null, null, pseudo, null));
-                userSession = service.setNewUser(pseudo);
+                userService.addUser(new RegisteredUser(null, null, email, null));
+                userSession = service.setNewUser(email);
             }
             System.out.println(userSession.getUsername() + " is logged in");
         } else {

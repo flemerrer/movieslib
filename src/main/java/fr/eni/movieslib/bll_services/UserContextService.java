@@ -17,8 +17,8 @@ public class UserContextService {
         this.userService = userService;
     }
 
-    public UserContext setNewUser(String pseudo) {
-        userContext = new UserContext(userService.getUserByName(pseudo));
+    public UserContext setNewUser(String email) {
+        userContext = new UserContext(userService.getUserByName(email));
         return userContext;
     }
 

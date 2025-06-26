@@ -6,7 +6,7 @@
                         th:href="@{/logout}">Logout</a>
 
     <form action="/login" method="post" th:unless="${userSession.getUsername() != null}">
-        <input name="pseudo" type="text">
+        <input name="email" type="text">
         <button id="login" class="primary" type="submit">Login</button>
     </form>
     <a class="menuLink flag" href="/?language=EN"><img src="/English.webp" alt="EN"></a>

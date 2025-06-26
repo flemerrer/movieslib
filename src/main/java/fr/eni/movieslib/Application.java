@@ -9,6 +9,7 @@ import org.springframework.core.io.ClassPathResource;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 import org.springframework.jdbc.datasource.init.ResourceDatabasePopulator;
 
+import java.io.IOException;
 import java.util.Objects;
 
 @SpringBootApplication
@@ -23,9 +24,9 @@ public class Application implements CommandLineRunner {
     }
 
     @Override
-    public void run(String... args) throws Exception {
+    public void run(String... args) throws Exception, IOException {
 
-        ClassPathResource resource = new ClassPathResource("sql/demo_script_mssql.sql");
+        ClassPathResource resource = new ClassPathResource("sql/filmotheque_script_mssql_insert.sql");
         ResourceDatabasePopulator databasePopulator = new ResourceDatabasePopulator(resource);
         databasePopulator.execute(Objects.requireNonNull(jdbcTemplate.getJdbcTemplate().getDataSource()));
     }
