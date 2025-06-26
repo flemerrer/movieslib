@@ -13,7 +13,7 @@ public class UserContext {
     boolean isAdmin;
 
     public UserContext(RegisteredUser user) {
-        this.username = user.getPseudo();
+        this.username = user.getEmail();
         this.isAdmin = user.isAdmin();
     }
 

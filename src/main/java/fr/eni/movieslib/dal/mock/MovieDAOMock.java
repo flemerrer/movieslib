@@ -1,4 +1,4 @@
-package fr.eni.movieslib.dal;
+package fr.eni.movieslib.dal.mock;
 
 import fr.eni.movieslib.bo.movies.Genre;
 import fr.eni.movieslib.bo.movies.Movie;
@@ -6,10 +6,12 @@ import fr.eni.movieslib.bo.movies.Review;
 import fr.eni.movieslib.bo.users.CastMember;
 import fr.eni.movieslib.bo.users.RegisteredUser;
 import lombok.Getter;
+import org.springframework.context.annotation.Profile;
 
 import java.util.ArrayList;
 import java.util.List;
 
+@Profile("dev")
 public class MovieDAOMock {
 
     private static List<Movie> moviesList = new ArrayList<>();

@@ -1,60 +1,50 @@
-package fr.eni.movieslib.bll_services.mock;
+package fr.eni.movieslib.bll_services;
 
-import java.util.List;
-
-import fr.eni.movieslib.bll_services.MovieService;
-import fr.eni.movieslib.bo.movies.Movie;
 import fr.eni.movieslib.bo.movies.Genre;
+import fr.eni.movieslib.bo.movies.Movie;
 import fr.eni.movieslib.bo.movies.Review;
 import fr.eni.movieslib.bo.users.CastMember;
-import fr.eni.movieslib.dal.mock.MovieDAOMock;
-import fr.eni.movieslib.dal.mock.MovieDAOMockFactory;
 import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
-@Profile("dev")
-public class MovieServiceMock implements MovieService {
-
-    MovieDAOMock movieDAOMock;
-
-    public MovieServiceMock() {
-        this.movieDAOMock = MovieDAOMockFactory.getMovieDAO();
-    }
-
+@Profile("prod")
+public class MovieServiceImpl  implements MovieService {
     @Override
     public List<Movie> getAllMovies() {
-        return movieDAOMock.getAll();
+        return List.of();
     }
 
     @Override
     public Movie getMovieById(long id) {
-        return movieDAOMock.get(id);
+        return null;
     }
 
     @Override
     public String[] getGenresList() {
-        return MovieDAOMock.getGenres();
+        return new String[0];
     }
 
     @Override
     public List<CastMember> getCastMembers() {
-        return MovieDAOMock.getCastMembers();
+        return List.of();
     }
 
     @Override
     public Genre getGenreById(long id) {
-        return movieDAOMock.getGenreById(id);
+        return null;
     }
 
     @Override
     public CastMember GetCastMemberById(long id) {
-        return movieDAOMock.GetCastMemberById(id);
+        return null;
     }
 
     @Override
     public void addMovie(Movie movie) {
-        movieDAOMock.addMovie(movie);
+
     }
 
     @Override
@@ -64,12 +54,12 @@ public class MovieServiceMock implements MovieService {
 
     @Override
     public void removeMovie(long id) {
-        movieDAOMock.removeMovie(id);
+
     }
 
     @Override
     public void updateMovie(Movie movie) {
-        movieDAOMock.updateMovie(movie);
+
     }
 
     @Override

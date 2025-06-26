@@ -17,20 +17,19 @@ public class RegisteredUser extends User implements Serializable {
     @Serial
     private static final long serialVersionUID = 1L;
 
-    String pseudo;
+    String email;
     String password;
     boolean isAdmin = false;
-    ArrayList<Review> reviews = new ArrayList<>();
 
-    public RegisteredUser(long id, String lastName, String firstName, String pseudo, String password) {
+    public RegisteredUser(long id, String lastName, String firstName, String email, String password) {
         super(id, lastName, firstName);
-        this.pseudo = pseudo;
+        this.email = email;
         this.password = password;
     }
 
-    public RegisteredUser(String name, String firstName, String pseudo, String password) {
+    public RegisteredUser(String name, String firstName, String email, String password) {
         super(name, firstName);
-        this.pseudo = pseudo;
+        this.email = email;
         this.password = password;
     }
 
@@ -38,11 +37,10 @@ public class RegisteredUser extends User implements Serializable {
     public String toString() {
         return "Member{" +
                 "isAdmin=" + isAdmin +
-                ", reviews=" + reviews +
                 ", id=" + id +
                 ", name='" + firstName + '\'' +
                 ", firstName='" + lastName + '\'' +
-                ", pseudo='" + pseudo + '\'' +
+                ", pseudo='" + email + '\'' +
                 '}';
     }
 }

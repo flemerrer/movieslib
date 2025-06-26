@@ -32,7 +32,7 @@ public class LoginController {
         if (!pseudo.isEmpty()) {
             RegisteredUser queriedUser = userService.getUserByName(userSession.getUsername());
             if (queriedUser != null) {
-                userSession = service.setNewUser(queriedUser.getPseudo());
+                userSession = service.setNewUser(queriedUser.getEmail());
             } else {
                 userService.addUser(new RegisteredUser(null, null, pseudo, null));
                 userSession = service.setNewUser(pseudo);

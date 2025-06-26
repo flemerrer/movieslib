@@ -2,8 +2,8 @@ package fr.eni.movieslib.bll_services.mock;
 
 import fr.eni.movieslib.bll_services.UserService;
 import fr.eni.movieslib.bo.users.RegisteredUser;
-import fr.eni.movieslib.dal.UserDAOMock;
-import fr.eni.movieslib.dal.UserDAOMockFactory;
+import fr.eni.movieslib.dal.mock.UserDAOMock;
+import fr.eni.movieslib.dal.mock.UserDAOMockFactory;
 import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Service;
 

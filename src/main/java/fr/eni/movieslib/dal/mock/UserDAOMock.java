@@ -1,10 +1,12 @@
-package fr.eni.movieslib.dal;
+package fr.eni.movieslib.dal.mock;
 
 import fr.eni.movieslib.bo.users.RegisteredUser;
+import org.springframework.context.annotation.Profile;
 
 import java.util.ArrayList;
 import java.util.List;
 
+@Profile("dev")
 public class UserDAOMock {
     private static List<RegisteredUser> usersList = new ArrayList<>();
 
@@ -17,7 +19,7 @@ public class UserDAOMock {
     }
 
     public RegisteredUser getUserByUsername(String username) {
-        return usersList.stream().filter(e -> e.getPseudo().equals(username)).findFirst().orElse(null);
+        return usersList.stream().filter(e -> e.getEmail().equals(username)).findFirst().orElse(null);
     }
 
     public void deleteUser() {
