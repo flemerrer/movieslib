@@ -9,17 +9,17 @@ import lombok.Setter;
 @Getter
 @NoArgsConstructor
 public class UserContext {
-    private String username = null;
+    private String email = null;
     boolean isAdmin;
 
     public UserContext(RegisteredUser user) {
-        this.username = user.getEmail();
+        this.email = user.getEmail();
         this.isAdmin = user.isAdmin();
     }
 
     @Override
     public String toString() {
-        return username;
+        return email;
     }
 
 }

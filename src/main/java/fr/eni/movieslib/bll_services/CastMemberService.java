@@ -1,6 +1,7 @@
 package fr.eni.movieslib.bll_services;
 
 import fr.eni.movieslib.bo.users.CastMember;
+import fr.eni.movieslib.bo.users.RegisteredUser;
 import fr.eni.movieslib.dal.CastMemberDAO;
 import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Service;

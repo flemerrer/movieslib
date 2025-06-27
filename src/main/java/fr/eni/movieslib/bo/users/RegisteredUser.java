@@ -19,7 +19,7 @@ public class RegisteredUser extends User implements Serializable {
 
     String email;
     String password;
-    boolean isAdmin = false;
+    boolean isAdmin;
 
     public RegisteredUser(long id, String lastName, String firstName, String email, String password) {
         super(id, lastName, firstName);

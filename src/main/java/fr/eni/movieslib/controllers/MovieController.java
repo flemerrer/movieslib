@@ -4,7 +4,6 @@ import fr.eni.movieslib.bll_services.*;
 import fr.eni.movieslib.bo.context.UserContext;
 import fr.eni.movieslib.bo.movies.Movie;
 import fr.eni.movieslib.bo.movies.Review;
-import fr.eni.movieslib.bo.users.RegisteredUser;
 import jakarta.validation.Valid;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -24,7 +23,7 @@ public class MovieController {
     CastMemberService serviceCastMember;
     GenreService serviceGenre;
 
-    public MovieController(MovieService movieService,  UserContextService userService, ReviewService reviewService, CastMemberService castMemberService, GenreService genreService) {
+    public MovieController(MovieService movieService, UserContextService userService, ReviewService reviewService, CastMemberService castMemberService, GenreService genreService) {
         this.serviceMovie = movieService;
         this.serviceUser = userService;
         this.serviceReview = reviewService;
@@ -57,7 +56,7 @@ public class MovieController {
 
     @GetMapping({"/", "/movies"})
     public String getAllMovies(Model model, @ModelAttribute("genresList") String[] genresList, @ModelAttribute("userSession") UserContext userContext) {
-        ArrayList<Movie> allMovies = (ArrayList<Movie>) serviceMovie.findAll();
+        ArrayList<Movie> allMovies = (ArrayList<Movie>) serviceMovie.getDetailedList();
         model.addAttribute("movies", allMovies);
         model.addAttribute("userSession", userContext);
         return "movies";
@@ -66,7 +65,7 @@ public class MovieController {
     @GetMapping("/movie/{id}")
     public String getMovieById(Model model, @PathVariable long id) {
         try {
-            Movie movie = serviceMovie.findById(id);
+            Movie movie = serviceMovie.getMovieDetails(id);
             if(movie == null) {
                 return "notFound";
             }

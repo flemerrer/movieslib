@@ -36,7 +36,7 @@
     <h2 th:text="#{movies.reviews}"></h2>
     <ul class="flex-outer">
         <li th:each="review: ${movie.reviews}" th:text="'★ ' + ${review.rating}+ ' — ' + ${review.comment} + ' — ' + ${review.member.email}"></li>
-        <li><a th:if="${userSession.getUsername() != null}" th:href="@{/movie/review/add/{id}(id=${movie.id})}"><button class="primary" th:text="#{movies.addReview}"></button></a></li>
+        <li><a th:if="${userSession.getEmail() != null}" th:href="@{/movie/review/add/{id}(id=${movie.id})}"><button class="primary" th:text="#{movies.addReview}"></button></a></li>
     </ul>
     <br/>
 <!--    <form th:object="${actor}" th:action="@{/movie/{id}(id=${movie.id})/actor/add}" method="post">

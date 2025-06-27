@@ -1,11 +1,11 @@
 <div class="navbar" th:fragment="header">
     <a href="/"><img src="/film.png" alt="logo "></a>
     <h1><a href="/" th:text="#{index.title}"></a></h1>
-    <p class="menuLink" th:if="${userSession.getUsername() != null}" th:text="${userSession.getUsername()}"></p>
-    <a class="menuLink" th:if="${userSession.getUsername() != null}"
+    <p class="menuLink" th:if="${userSession.getEmail() != null}" th:text="${userSession.getEmail()}"></p>
+    <a class="menuLink" th:if="${userSession.getEmail() != null}"
                         th:href="@{/logout}">Logout</a>
 
-    <form action="/login" method="post" th:unless="${userSession.getUsername() != null}">
+    <form action="/login" method="post" th:unless="${userSession.getEmail() != null}">
         <input name="email" type="text">
         <button id="login" class="primary" type="submit">Login</button>
     </form>

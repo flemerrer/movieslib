@@ -12,19 +12,22 @@ import org.springframework.stereotype.Service;
 public class UserContextService {
 
     private UserContext userContext;
-    private UserService userService;
 
-    public UserContextService(UserService userService) {
+    public UserContextService() {
         this.userContext = new UserContext();
-        this.userService = userService;
     }
 
-    public UserContext setNewUser(String email) {
-        userContext = new UserContext(userService.findByEmail(email));
+    public UserContext setUserContext(String email) {
+        userContext = new UserContext();
+        userContext.setEmail(email);
         return userContext;
     }
 
     public void flushSession() {
-        userContext.setUsername(null);
+        userContext.setEmail(null);
+    }
+
+    public void setAdmin() {
+        userContext.setAdmin(true);
     }
 }

@@ -31,7 +31,9 @@ public class CastMemberDAO {
 
     public List<CastMember> findCastMembersByMovieId(long movie_id){
         String request = "SELECT first_name, last_name FROM CASTMEMBERS c INNER JOIN ACTORS a ON c.id = a.cast_id WHERE a.movie_id = :movie_id ";
-        return JdbcTemplate.query(request, new BeanPropertyRowMapper<>(CastMember.class));
+        MapSqlParameterSource namedParameters = new MapSqlParameterSource();
+        namedParameters.addValue("movie_id", movie_id);
+        return JdbcTemplate.query(request, namedParameters, new BeanPropertyRowMapper<>(CastMember.class));
     }
 
     public void add(long movie_id, long cast_id){

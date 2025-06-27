@@ -23,7 +23,7 @@ public class GenreDAO {
     }
 
     public Genre findById(long id) {
-        String request = "SELECT name FROM GENRES WHERE ID = :id";
+        String request = "SELECT name FROM GENRES WHERE id = :id";
         MapSqlParameterSource namedParameters = new MapSqlParameterSource();
         namedParameters.addValue("id", id);
         return JdbcTemplate.queryForObject(request, namedParameters, new BeanPropertyRowMapper<>(Genre.class));

@@ -1,5 +1,6 @@
 package fr.eni.movieslib.dal;
 
+import fr.eni.movieslib.bll_services.mappers.MovieMapper;
 import fr.eni.movieslib.bo.movies.Movie;
 import org.springframework.context.annotation.Profile;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
@@ -14,9 +15,13 @@ import java.util.List;
 public class MovieDAO {
 
     private final NamedParameterJdbcTemplate JdbcTemplate;
+    GenreDAO genreDAO;
+    CastMemberDAO castMemberDAO;
 
-    public MovieDAO(NamedParameterJdbcTemplate JdbcTemplate) {
+    public MovieDAO(NamedParameterJdbcTemplate JdbcTemplate, CastMemberDAO castMemberDAO, GenreDAO genreDAO) {
         this.JdbcTemplate = JdbcTemplate;
+        this.castMemberDAO = castMemberDAO;
+        this.genreDAO = genreDAO;
     }
 
     public void add(Movie movie) {
@@ -30,15 +35,16 @@ public class MovieDAO {
     }
 
     public Movie findById(long id) {
-        String request = "SELECT title, release_date, duration, synopsis FROM MOVIES WHERE ID = :id";
+        String request = "SELECT id, title, release_date, duration, synopsis, genre_id, director_id FROM MOVIES WHERE ID = :id";
         MapSqlParameterSource namedParameters = new MapSqlParameterSource();
         namedParameters.addValue("id", id);
-        return JdbcTemplate.queryForObject(request, namedParameters, new BeanPropertyRowMapper<>(Movie.class));
+        return JdbcTemplate.queryForObject(request, namedParameters,new MovieMapper(genreDAO, castMemberDAO));
     }
 
+    //    String request = "SELECT first_name, last_name FROM CASTMEMBERS c INNER JOIN ACTORS a ON c.id = a.cast_id WHERE a.movie_id = :movie_id ";
     public List<Movie> findAll() {
-        String request = "SELECT title, release_date, duration, synopsis FROM MOVIES";
-        return JdbcTemplate.query(request, new BeanPropertyRowMapper<>(Movie.class));
+        String request = "SELECT id, title, release_date, duration, genre_id, director_id synopsis FROM MOVIES";
+        return JdbcTemplate.query(request, new MovieMapper(genreDAO, castMemberDAO));
     }
 
     public String getTitle(long id){

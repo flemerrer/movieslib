@@ -28,8 +28,18 @@ public class MovieServiceMock implements MovieService {
     }
 
     @Override
+    public List<Movie> getDetailedList() {
+        return List.of();
+    }
+
+    @Override
     public Movie findById(long id) {
         return movieDAOMock.get(id);
+    }
+
+    @Override
+    public Movie getMovieDetails(long id) {
+        return null;
     }
 
     public String[] getGenresList() {

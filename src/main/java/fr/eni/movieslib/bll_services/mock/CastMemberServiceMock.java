@@ -1,6 +1,5 @@
 package fr.eni.movieslib.bll_services.mock;
 
-import fr.eni.movieslib.bll_services.CastMemberService;
 import fr.eni.movieslib.bo.users.CastMember;
 import fr.eni.movieslib.dal.mock.MovieDAOMock;
 import fr.eni.movieslib.dal.mock.MovieDAOMockFactory;

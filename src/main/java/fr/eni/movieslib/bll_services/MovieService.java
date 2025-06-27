@@ -7,7 +7,11 @@ import java.util.List;
 public interface MovieService {
     List<Movie> findAll();
 
+    List<Movie> getDetailedList();
+
     Movie findById(long id);
+
+    Movie getMovieDetails(long id);
 
     void add(Movie movie);
 
