@@ -41,7 +41,7 @@ public class CastMemberDAO {
         MapSqlParameterSource namedParameters = new MapSqlParameterSource();
         namedParameters.addValue("movie_id", movie_id);
         namedParameters.addValue("cast_id", cast_id);
-        namedParameterJdbcTemplate.update(request,namedParameters);
+        namedParameterJdbcTemplate.update(request, namedParameters);
     }
 
 }

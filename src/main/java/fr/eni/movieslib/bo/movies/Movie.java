@@ -39,17 +39,17 @@ public class Movie implements Serializable {
     ArrayList<CastMember> actors = new ArrayList<>();
     ArrayList<Review> reviews = new ArrayList<>();
 
-    public Movie(String title, int year, int duration, String synopsis) {
+    public Movie(String title, int releaseDate, int duration, String synopsis) {
         this.title = title;
-        this.releaseDate = year;
+        this.releaseDate = releaseDate;
         this.duration = duration;
         this.synopsis = synopsis;
     }
 
-    public Movie(long id, String title, int year, int duration, String synopsis) {
+    public Movie(long id, String title, int releaseDate, int duration, String synopsis) {
         this.id = id;
         this.title = title;
-        this.releaseDate = year;
+        this.releaseDate = releaseDate;
         this.duration = duration;
         this.synopsis = synopsis;
     }

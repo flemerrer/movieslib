@@ -114,7 +114,7 @@ public class MovieController {
         if (bindingResult.hasErrors()) {
             return "redirect:/movie/review/add/"+id;
         }
-        serviceReview.add();
+        serviceReview.add(review, id);
         return "redirect:/movie/"+id;
     }
 
