@@ -30,6 +30,11 @@ public class UserServiceMock implements UserService {
     }
 
     @Override
+    public RegisteredUser findById(long id) {
+        return null;
+    }
+
+    @Override
     public void add(RegisteredUser user) {
         userDAOMock.createUser(user);
     }

@@ -7,6 +7,9 @@ import java.util.List;
 public interface UserService {
     List<RegisteredUser> findAll();
     RegisteredUser findByEmail(String username);
+
+    RegisteredUser findById(long id);
+
     void add(RegisteredUser user);
     void delete(long id);
 }

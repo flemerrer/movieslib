@@ -28,4 +28,8 @@ public class CastMemberService {
     public CastMember findById(long id) {
         return castMemberDAO.findById(id);
     }
+
+    public List<CastMember> findByMovieId(long id) {
+        return castMemberDAO.findCastMembersByMovieId(id);
+    }
 }

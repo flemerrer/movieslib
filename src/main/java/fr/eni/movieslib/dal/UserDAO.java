@@ -1,6 +1,5 @@
 package fr.eni.movieslib.dal;
 
-import fr.eni.movieslib.bo.movies.Movie;
 import fr.eni.movieslib.bo.users.RegisteredUser;
 import org.springframework.context.annotation.Profile;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
@@ -14,29 +13,29 @@ import java.util.List;
 @Profile("prod")
 public class UserDAO {
 
-    NamedParameterJdbcTemplate namedParameterJdbcTemplate;
+    private final NamedParameterJdbcTemplate JdbcTemplate;
 
-    public void setJDBCTemplate(NamedParameterJdbcTemplate namedParameterJdbcTemplate) {
-        this.namedParameterJdbcTemplate = namedParameterJdbcTemplate;
+    public UserDAO(NamedParameterJdbcTemplate JdbcTemplate) {
+        this.JdbcTemplate = JdbcTemplate;
     }
 
-    public RegisteredUser getById(long id) {
+    public RegisteredUser findById(long id) {
         String request = "SELECT first_name, last_name, email FROM REGISTERED_USERS WHERE ID = :id";
         MapSqlParameterSource namedParameters = new MapSqlParameterSource();
         namedParameters.addValue("id", id);
-        return namedParameterJdbcTemplate.queryForObject(request, namedParameters, new BeanPropertyRowMapper<>(RegisteredUser.class));
+        return JdbcTemplate.queryForObject(request, namedParameters, new BeanPropertyRowMapper<>(RegisteredUser.class));
     }
 
     public RegisteredUser getByEmail(String email) {
         String request = "SELECT first_name, last_name, email FROM REGISTERED_USERS WHERE email = :email";
         MapSqlParameterSource namedParameters = new MapSqlParameterSource();
         namedParameters.addValue("id", email);
-        return namedParameterJdbcTemplate.queryForObject(request, namedParameters, new BeanPropertyRowMapper<>(RegisteredUser.class));
+        return JdbcTemplate.queryForObject(request, namedParameters, new BeanPropertyRowMapper<>(RegisteredUser.class));
     }
 
     public List<RegisteredUser> findAll() {
         String request = "SELECT first_name, last_name, email FROM REGISTERED_USERS";
-        return namedParameterJdbcTemplate.query(request, new BeanPropertyRowMapper<>(RegisteredUser.class));
+        return JdbcTemplate.query(request, new BeanPropertyRowMapper<>(RegisteredUser.class));
     }
 
     public void add(RegisteredUser user) {
@@ -46,13 +45,13 @@ public class UserDAO {
         namedParameters.addValue("lastName", user.getLastName());
         namedParameters.addValue("email", user.getEmail());
         namedParameters.addValue("password", user.getPassword());
-        namedParameterJdbcTemplate.update(request,namedParameters);
+        JdbcTemplate.update(request,namedParameters);
     }
 
     public int delete(long id) {
         String request = "DELETE FROM REGISTERED_USERS WHERE ID = :id";
         MapSqlParameterSource namedParameters = new MapSqlParameterSource();
         namedParameters.addValue("id", id);
-        return namedParameterJdbcTemplate.update(request, namedParameters);
+        return JdbcTemplate.update(request, namedParameters);
     }
 }

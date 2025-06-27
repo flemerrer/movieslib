@@ -2,7 +2,6 @@ package fr.eni.movieslib.bll_services;
 
 import fr.eni.movieslib.bo.users.RegisteredUser;
 import fr.eni.movieslib.dal.UserDAO;
-import fr.eni.movieslib.dal.UserDAOFactory;
 import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Service;
 
@@ -14,8 +13,8 @@ public class UserServiceImpl implements UserService {
 
     UserDAO userDAO;
 
-    public UserServiceImpl() {
-        this.userDAO = UserDAOFactory.getUserDAO();
+    public UserServiceImpl(UserDAO userDAO) {
+        this.userDAO = userDAO;
     }
 
     @Override
@@ -26,6 +25,11 @@ public class UserServiceImpl implements UserService {
     @Override
     public RegisteredUser findByEmail(String email) {
         return userDAO.getByEmail(email);
+    }
+
+    @Override
+    public RegisteredUser findById(long id) {
+        return userDAO.findById(id);
     }
 
     @Override

@@ -2,6 +2,7 @@ package fr.eni.movieslib.dal;
 
 import fr.eni.movieslib.bo.movies.Genre;
 import fr.eni.movieslib.bo.users.CastMember;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Profile;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
@@ -14,21 +15,22 @@ import java.util.List;
 @Profile("prod")
 public class GenreDAO {
 
-    NamedParameterJdbcTemplate namedParameterJdbcTemplate;
+    NamedParameterJdbcTemplate JdbcTemplate;
 
-    public GenreDAO(NamedParameterJdbcTemplate namedParameterJdbcTemplate) {
-        this.namedParameterJdbcTemplate = namedParameterJdbcTemplate;
+    @Autowired
+    public GenreDAO(NamedParameterJdbcTemplate JdbcTemplate) {
+        this.JdbcTemplate = JdbcTemplate;
     }
 
     public Genre findById(long id) {
-        String request = "SELECT name FROM GENRE WHERE ID = :id";
+        String request = "SELECT name FROM GENRES WHERE ID = :id";
         MapSqlParameterSource namedParameters = new MapSqlParameterSource();
         namedParameters.addValue("id", id);
-        return namedParameterJdbcTemplate.queryForObject(request, namedParameters, new BeanPropertyRowMapper<>(Genre.class));
+        return JdbcTemplate.queryForObject(request, namedParameters, new BeanPropertyRowMapper<>(Genre.class));
     }
 
     public List<Genre> findAll(){
-        String request = "SELECT name FROM GENRE";
-        return namedParameterJdbcTemplate.query(request, new BeanPropertyRowMapper<>(Genre.class));
+        String request = "SELECT name FROM GENRES";
+        return JdbcTemplate.query(request, new BeanPropertyRowMapper<>(Genre.class));
     }
 }

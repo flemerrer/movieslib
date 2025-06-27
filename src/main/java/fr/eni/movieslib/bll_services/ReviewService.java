@@ -1,7 +1,6 @@
 package fr.eni.movieslib.bll_services;
 
 import fr.eni.movieslib.bo.movies.Review;
-import fr.eni.movieslib.dal.CastMemberDAO;
 import fr.eni.movieslib.dal.ReviewDAO;
 import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Service;
@@ -22,7 +21,7 @@ public class ReviewService {
         reviewDAO.add(review, movieId);
     }
 
-    public List<Review> getMovieReviews(long movieId) {
+    public List<Review> findByMovieId(long movieId) {
         return reviewDAO.findByMovieId(movieId);
     }
 }

@@ -1,7 +1,7 @@
 package fr.eni.movieslib.dal;
 
 import fr.eni.movieslib.bo.movies.Review;
-import fr.eni.movieslib.bo.users.CastMember;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Profile;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
@@ -14,11 +14,8 @@ import java.util.List;
 @Profile("prod")
 public class ReviewDAO {
 
-    NamedParameterJdbcTemplate namedParameterJdbcTemplate;
-
-    public ReviewDAO(NamedParameterJdbcTemplate namedParameterJdbcTemplate) {
-        this.namedParameterJdbcTemplate = namedParameterJdbcTemplate;
-    }
+    @Autowired
+    private NamedParameterJdbcTemplate JdbcTemplate;
 
     public void add(Review review, long movie_id){
         String request = "INSERT INTO REVIEWS VALUES (:movie_id, :user_id, :rating, :comment)";
@@ -27,13 +24,13 @@ public class ReviewDAO {
         namedParameters.addValue("rating", review.getRating());
         namedParameters.addValue("comment", review.getComment());
         namedParameters.addValue("user_id", review.getMember().getId());
-        namedParameterJdbcTemplate.update(request, namedParameters);
+        JdbcTemplate.update(request, namedParameters);
     }
 
     public List<Review> findByMovieId(long movie_id) {
         String request = "SELECT rating, comment, user_id  FROM REVIEWS WHERE movie_id = :movie_id ";
         MapSqlParameterSource namedParameters = new MapSqlParameterSource();
         namedParameters.addValue("movie_id", movie_id);
-        return namedParameterJdbcTemplate.query(request, namedParameters, new BeanPropertyRowMapper<>(Review.class));
+        return JdbcTemplate.query(request, namedParameters, new BeanPropertyRowMapper<>(Review.class));
     }
 }
